@@ -8,7 +8,7 @@ const { logger } = require('../utils/logger');
 const getProducts = async (req, res) => {
   try {
     const {
-      page = 1, limit = 12, category, subCategory, brand,
+      page = 1, limit = 12, brand,
       minPrice, maxPrice, color, size, sort = 'newest',
       search, tags, isActive = 'true'
     } = req.query;
@@ -27,8 +27,7 @@ const getProducts = async (req, res) => {
       isActive: isActive === 'true'
     };
 
-    if (category) where.category = { equals: category, mode: 'insensitive' };
-    if (subCategory) where.subCategory = { equals: subCategory, mode: 'insensitive' };
+   
     if (brand) where.brand = { equals: brand, mode: 'insensitive' };
     if (color) where.colors = { has: color };
     if (size) where.sizes = { has: size };
@@ -65,7 +64,7 @@ const getProducts = async (req, res) => {
         where, orderBy, skip, take: limitNum,
         select: {
           id: true, name: true, price: true, comparePrice: true,
-          category: true, subCategory: true, brand: true,
+           brand: true,
           colors: true, sizes: true, stock: true, rating: true,
           numReviews: true, images: true, garmentImageUrl: true,
           popularity: true, tags: true, isActive: true, createdAt: true

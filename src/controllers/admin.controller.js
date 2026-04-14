@@ -115,11 +115,11 @@ const getAllProducts = async (req, res) => {
 const createProduct = async (req, res) => {
   try {
     const {
-      name, description, price, comparePrice, category, subCategory,
+      name, description, price, comparePrice, 
       brand, colors, sizes, material, pattern, stock, tags
     } = req.body;
 
-    if (!name || !description || !price || !category) {
+    if (!name || !description || !price) {
       return res.status(400).json({ success: false, message: 'Name, description, price, and category are required' });
     }
 
@@ -144,7 +144,7 @@ const createProduct = async (req, res) => {
         name, description,
         price: parseFloat(price),
         comparePrice: comparePrice ? parseFloat(comparePrice) : null,
-        category, subCategory, brand, material, pattern,
+        brand, material, pattern,
         colors: Array.isArray(colors) ? colors : (colors ? colors.split(',').map(c => c.trim()) : []),
         sizes: Array.isArray(sizes) ? sizes : (sizes ? sizes.split(',').map(s => s.trim()) : []),
         stock: parseInt(stock) || 0,
@@ -169,7 +169,7 @@ const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
     const {
-      name, description, price, comparePrice, category, subCategory,
+      name, description, price, comparePrice,
       brand, colors, sizes, material, pattern, stock, tags, isActive
     } = req.body;
 

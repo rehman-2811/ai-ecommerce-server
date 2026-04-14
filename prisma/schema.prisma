@@ -94,7 +94,7 @@ model Product {
   description    String
   price          Float
   comparePrice   Float?
-  category       String
+  category       String?
   subCategory    String?
   brand          String?
   colors         String[]
