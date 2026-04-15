@@ -210,3 +210,163 @@
 {"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-14 16:04:05"}
 {"level":"info","message":"Environment: development","timestamp":"2026-04-14 16:04:05"}
 {"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-14 16:04:07"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 12:37:08"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 12:37:08"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 12:37:10"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 15:30:12"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 15:30:12"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 15:30:13"}
+{"level":"error","message":"Email send error:","timestamp":"2026-04-15 16:03:20"}
+{"level":"warn","message":"Welcome email failed:","timestamp":"2026-04-15 16:03:20"}
+{"level":"error","message":"Email send error:","timestamp":"2026-04-15 16:05:52"}
+{"level":"warn","message":"Order email failed:","timestamp":"2026-04-15 16:05:52"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:07:59"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:07:59"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:07:59"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:10:53"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:10:53"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:10:53"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:11:30"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:11:30"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:11:30"}
+{"level":"info","message":"Email sent: <19587472-01df-76cc-f754-76cbf9de19f3@Aqua Fits>","timestamp":"2026-04-15 16:13:21"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:14:05"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:14:05"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:14:06"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:14:06"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:14:06"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:14:11"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:14:11"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:14:11"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:14:27"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:14:27"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:14:27"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:14:30"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:14:30"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:14:30"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:15:50"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:15:50"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:15:52"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:15:52"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:15:52"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:15:53"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:15:53"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:15:53"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:15:55"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:15:55"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:15:55"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:15:59"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:15:59"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:15:59"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:16:02"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:16:02"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:16:02"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:16:06"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:16:06"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:16:06"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:16:07"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:16:07"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:16:07"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:17:47"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:17:47"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:17:48"}
+{"level":"info","message":"Email sent: <b5517177-a73b-3377-7f95-4ee75996a835@Aqua Fits>","timestamp":"2026-04-15 16:19:32"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:21:28"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:21:28"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:21:29"}
+{"level":"info","message":"Email sent: <07ab60f1-19b5-1a67-5888-0d3b5076a8b7@Aqua Fits>","timestamp":"2026-04-15 16:21:56"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:28:35"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:28:35"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:28:35"}
+{"level":"info","message":"Email sent: <8d08c56b-6334-a95f-84e4-6ba4a2bcf5cb@Aqua Fits>","timestamp":"2026-04-15 16:29:33"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:32:25"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:32:25"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:32:26"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:32:38"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:32:38"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:32:38"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:32:54"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:32:54"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:32:54"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:32:59"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:32:59"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:32:59"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:33:05"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:33:05"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:33:05"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:33:20"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:33:20"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:33:20"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:33:23"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:33:23"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:33:23"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:33:39"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:33:39"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:33:40"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:33:44"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:33:44"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:33:44"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:33:47"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:33:47"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:33:47"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:33:49"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:33:49"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:33:49"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:33:52"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:33:52"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:33:52"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:34:42"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:34:42"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:34:42"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:34:44"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:34:44"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:34:44"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:34:45"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:34:45"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:34:45"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:34:48"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:34:48"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:34:48"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:35:12"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:35:12"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:35:13"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:35:18"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:35:18"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:35:18"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:37:05"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:37:05"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:37:06"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:37:08"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:37:08"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:37:08"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:37:14"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:37:14"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:37:14"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:37:29"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:37:29"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:37:30"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:37:40"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:37:40"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:37:40"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:37:46"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:37:46"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:37:46"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:37:48"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:37:49"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:37:49"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:37:56"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:37:56"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:37:56"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:38:38"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:38:38"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:38:39"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:38:41"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:38:41"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:38:41"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:41:14"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:41:14"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:41:14"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-15 16:41:16"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-15 16:41:16"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-15 16:41:16"}
+{"level":"info","message":"Email sent: <ea74aab4-9211-e505-ba61-cae237d359cd@Aqua Fits>","timestamp":"2026-04-15 16:41:50"}

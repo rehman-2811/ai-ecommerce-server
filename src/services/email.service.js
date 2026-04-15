@@ -31,7 +31,7 @@ const sendEmail = async ({ to, subject, html, text }) => {
     const transport = createTransporter();
 
     const info = await transport.sendMail({
-      from: process.env.EMAIL_FROM || '"AI Ecommerce" <noreply@aiecommerce.com>',
+      from: process.env.EMAIL_FROM || "....<Aqua Fits>....",
       to,
       subject,
       html,
@@ -41,7 +41,7 @@ const sendEmail = async ({ to, subject, html, text }) => {
     logger.info(`Email sent: ${info.messageId}`);
     return info;
   } catch (error) {
-    logger.error('Email send error:', error.message);
+    logger.error('Email send error:', error);
     throw error;
   }
 };
@@ -59,37 +59,90 @@ const sendOrderConfirmation = async (user, order) => {
     to: user.email,
     subject: `Order Confirmed #${order.orderNumber}`,
     html: `
-      <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
-        <div style="background:#1a1a1a;padding:20px;text-align:center">
-          <h1 style="color:white;margin:0">AI Ecommerce</h1>
-        </div>
-        <div style="padding:30px;background:#f9f9f9">
-          <h2 style="color:#1a1a1a">Order Confirmed!</h2>
-          <p>Hello ${user.name}, your order has been confirmed.</p>
-          <p><strong>Order #:</strong> ${order.orderNumber}</p>
-          
-          <table style="width:100%;border-collapse:collapse;margin:20px 0">
-            <thead>
-              <tr style="background:#1a1a1a;color:white">
-                <th style="padding:10px;text-align:left">Product</th>
-                <th style="padding:10px;text-align:center">Qty</th>
-                <th style="padding:10px;text-align:right">Price</th>
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#0f0f0f;padding:20px;font-family:Arial,sans-serif">
+  <tr>
+    <td align="center">
+
+      <!-- Main Container -->
+      <table width="600" cellpadding="0" cellspacing="0" style="background:#1a1a1a;border:1px solid #2c2c2c">
+
+        <!-- Header -->
+        <tr>
+          <td style="background:#000;padding:20px;text-align:center">
+            <h1 style="color:#d8a20e;margin:0;letter-spacing:1px">
+              AI Ecommerce
+            </h1>
+          </td>
+        </tr>
+
+        <!-- Body -->
+        <tr>
+          <td style="padding:25px;color:#e0e0e0">
+
+            <h2 style="color:#ffffff;margin-bottom:10px">
+              🎉 Order Confirmed!
+            </h2>
+
+            <p style="color:#ccc;font-size:14px">
+              Hello <strong>${user.name}</strong>, your order has been successfully placed.
+            </p>
+
+            <!-- Order Box -->
+            <div style="background:#111;border:1px solid #333;padding:12px;margin:15px 0">
+              <p style="margin:0;color:#d8a20e">
+                <strong>Order #:</strong> ${order.orderNumber}
+              </p>
+            </div>
+
+            <!-- Items Table -->
+            <table width="100%" cellpadding="8" cellspacing="0" style="border-collapse:collapse;margin-top:15px;font-size:14px">
+              <tr style="background:#222;color:#d8a20e">
+                <th align="left">Product</th>
+                <th align="center">Qty</th>
+                <th align="right">Price</th>
               </tr>
-            </thead>
-            <tbody>${itemsHtml}</tbody>
-          </table>
-          
-          <div style="text-align:right;border-top:2px solid #1a1a1a;padding-top:10px">
-            <p><strong>Subtotal:</strong> PKR ${order.subtotal.toLocaleString()}</p>
-            <p><strong>Shipping:</strong> PKR ${order.shippingCost.toLocaleString()}</p>
-            <p style="font-size:1.2em;color:#8B4513"><strong>Total: PKR ${order.total.toLocaleString()}</strong></p>
-          </div>
-          
-          <p><strong>Payment:</strong> ${order.paymentMethod}</p>
-          <p>We'll notify you when your order ships!</p>
-        </div>
-      </div>
-    `
+              ${itemsHtml}
+            </table>
+
+            <!-- Totals -->
+            <div style="margin-top:20px;text-align:right;border-top:1px solid #333;padding-top:10px">
+              <p style="margin:5px 0"><strong>Subtotal:</strong> PKR ${order.subtotal.toLocaleString()}</p>
+              <p style="margin:5px 0"><strong>Shipping:</strong> PKR ${order.shippingCost.toLocaleString()}</p>
+              <p style="margin:8px 0;color:#d8a20e;font-size:16px">
+                <strong>Total: PKR ${order.total.toLocaleString()}</strong>
+              </p>
+            </div>
+
+            <!-- Button -->
+            <div style="text-align:center;margin:25px 0">
+              <a href="#"
+                 style="background:#d8a20e;color:#000;padding:12px 25px;text-decoration:none;
+                 font-weight:bold;display:inline-block;border-radius:4px">
+                 View Order
+              </a>
+            </div>
+
+            <!-- Footer text -->
+            <p style="text-align:center;color:#888;font-size:13px">
+              We'll notify you when your order ships 🚚
+            </p>
+
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="background:#000;color:#777;text-align:center;padding:12px;font-size:12px">
+            © 2026 AI Ecommerce • Premium Experience
+          </td>
+        </tr>
+
+      </table>
+
+    </td>
+  </tr>
+</table>
+`
   });
 };
 
