@@ -30,7 +30,7 @@ const getDashboard = async (req, res) => {
       }),
       prisma.product.findMany({
         where: { stock: { lte: 10 }, isActive: true },
-        select: { id: true, name: true, stock: true, images: true, category: true },
+        select: { id: true, name: true, stock: true, images: true },
         orderBy: { stock: 'asc' },
         take: 10
       }),
@@ -151,6 +151,7 @@ const createProduct = async (req, res) => {
         tags: Array.isArray(tags) ? tags : (tags ? tags.split(',').map(t => t.trim()) : []),
         images,
         garmentImageUrl,
+        // category:'',
         imageEmbedding: [],
         textEmbedding: []
       }
@@ -177,7 +178,7 @@ const updateProduct = async (req, res) => {
     if (!existing) return res.status(404).json({ success: false, message: 'Product not found' });
 
     let updateData = {
-      name, description, category, subCategory, brand, material, pattern, isActive: isActive === 'true',
+      name, description, brand, material, pattern, isActive: isActive === 'true',
       price: price ? parseFloat(price) : existing.price,
       comparePrice: comparePrice ? parseFloat(comparePrice) : existing.comparePrice,
       stock: stock ? parseInt(stock) : existing.stock,
@@ -365,7 +366,7 @@ const getVTONAnalytics = async (req, res) => {
     const productIds = mostTriedProducts.map(p => p.productId);
     const products = await prisma.product.findMany({
       where: { id: { in: productIds } },
-      select: { id: true, name: true, images: true, category: true }
+      select: { id: true, name: true, images: true,  }
     });
 
     const mostTriedWithDetails = mostTriedProducts.map(stat => ({
