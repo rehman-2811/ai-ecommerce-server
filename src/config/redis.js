@@ -27,19 +27,23 @@ const connectRedis = async () => {
 
     redisClient.on('error', (err) => {
       logger.warn('Redis error (non-fatal):', err.message);
+      console.log('Redis error (non-fatal):')
     });
 
     redisClient.on('connect', () => {
       logger.info('Redis client connected');
+      console.log("redis client connected")
     });
 
     await redisClient.connect().catch(() => {
       logger.warn('Redis not available - caching disabled');
+      console.log("redis not available")
       redisClient = null;
     });
 
   } catch (error) {
     logger.warn('Redis setup failed - running without cache:', error.message);
+    console.log("redis setup failed")
     redisClient = null;
   }
   return redisClient;
@@ -86,3 +90,5 @@ const delCachePattern = async (pattern) => {
 };
 
 module.exports = { connectRedis, getCache, setCache, delCache, delCachePattern, redisClient };
+
+

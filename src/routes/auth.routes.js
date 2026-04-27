@@ -1,7 +1,7 @@
 // src/routes/auth.routes.js
 const express = require('express');
 const router = express.Router();
-const { register, login, logout, refreshToken, getMe, forgotPassword, resetPassword, updateProfile, changePassword } = require('../controllers/auth.controller');
+const { register, login, logout, refreshToken, getMe, forgotPassword, resetPassword, updateProfile, changePassword, googleAuth, googleAuthUserInfo } = require('../controllers/auth.controller');
 const { protect } = require('../middleware/auth');
 const { authLimiter } = require('../middleware/rateLimit');
 
@@ -14,5 +14,7 @@ router.post('/forgot-password', authLimiter, forgotPassword);
 router.post('/reset-password/:token', resetPassword);
 router.put('/update-profile', protect, updateProfile);
 router.post('/change-password', protect, changePassword);
+router.post('/google', authLimiter, googleAuth);
+router.post('/google-userinfo', authLimiter, googleAuthUserInfo);
 
 module.exports = router;

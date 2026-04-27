@@ -5,14 +5,13 @@ const bcrypt = require('bcryptjs');
 
 const prisma = new PrismaClient();
 
-const categories = ['Shirts', 'Pants', 'Dresses', 'Jackets', 'Kurtas', 'Abayas', 'T-Shirts', 'Jeans'];
 
 const sampleProducts = [
   {
     name: 'Classic White Oxford Shirt',
     description: 'A timeless white Oxford shirt crafted from premium 100% cotton. Perfect for formal and semi-formal occasions with a crisp, clean look.',
     price: 2499, comparePrice: 3500,
-    category: 'Shirts', subCategory: 'Formal', brand: 'StylePK',
+  
     colors: ['White', 'Light Blue', 'Grey'],
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     material: 'Cotton', pattern: 'Solid', stock: 50,
@@ -28,7 +27,6 @@ const sampleProducts = [
     name: 'Slim Fit Dark Jeans',
     description: 'Premium dark wash slim fit jeans with a modern silhouette. Made from stretch denim for maximum comfort throughout the day.',
     price: 3200, comparePrice: 4500,
-    category: 'Jeans', subCategory: 'Slim Fit', brand: 'DenimCraft',
     colors: ['Dark Blue', 'Black', 'Indigo'],
     sizes: ['28', '30', '32', '34', '36'],
     material: 'Denim', pattern: 'Solid', stock: 35,
@@ -43,7 +41,6 @@ const sampleProducts = [
     name: 'Embroidered Lawn Kurta',
     description: 'Beautifully embroidered summer lawn kurta with traditional Pakistani motifs. Lightweight and breathable for hot weather.',
     price: 1850, comparePrice: 2500,
-    category: 'Kurtas', subCategory: 'Summer', brand: 'PakFashion',
     colors: ['White', 'Mint', 'Powder Blue', 'Peach'],
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
     material: 'Lawn', pattern: 'Embroidered', stock: 75,
@@ -58,7 +55,6 @@ const sampleProducts = [
     name: 'Black Abaya with Lace Detail',
     description: 'Elegant black abaya featuring delicate lace detailing on sleeves and hemline. Premium nida fabric with a luxurious drape.',
     price: 4500, comparePrice: 6000,
-    category: 'Abayas', subCategory: 'Formal', brand: 'ModestWear',
     colors: ['Black', 'Navy', 'Maroon'],
     sizes: ['54', '56', '58', '60', '62'],
     material: 'Nida', pattern: 'Lace', stock: 30,
@@ -73,7 +69,6 @@ const sampleProducts = [
     name: 'Graphic Print T-Shirt',
     description: 'Comfortable 100% cotton graphic t-shirt with modern street art print. Relaxed fit perfect for casual everyday wear.',
     price: 899, comparePrice: 1200,
-    category: 'T-Shirts', subCategory: 'Casual', brand: 'UrbanTee',
     colors: ['Black', 'White', 'Charcoal', 'Navy'],
     sizes: ['S', 'M', 'L', 'XL'],
     material: 'Cotton', pattern: 'Graphic', stock: 100,
@@ -88,7 +83,6 @@ const sampleProducts = [
     name: 'Formal Blazer - Charcoal',
     description: 'Sharp charcoal grey blazer with a slim modern cut. Ideal for office wear, presentations, and formal events.',
     price: 8500, comparePrice: 12000,
-    category: 'Jackets', subCategory: 'Blazers', brand: 'Executive',
     colors: ['Charcoal', 'Navy', 'Black'],
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     material: 'Polyester Blend', pattern: 'Solid', stock: 20,
@@ -103,7 +97,6 @@ const sampleProducts = [
     name: 'Summer Floral Dress',
     description: 'Vibrant floral print summer dress with flutter sleeves and A-line silhouette. Light and airy fabric perfect for warm days.',
     price: 2800, comparePrice: 3800,
-    category: 'Dresses', subCategory: 'Casual', brand: 'BloomWear',
     colors: ['Floral Blue', 'Floral Pink', 'Floral Yellow'],
     sizes: ['XS', 'S', 'M', 'L'],
     material: 'Chiffon', pattern: 'Floral', stock: 45,
@@ -118,7 +111,6 @@ const sampleProducts = [
     name: 'Chino Trousers - Khaki',
     description: 'Classic khaki chino trousers with a straight leg fit. Versatile style transitions seamlessly from casual to smart-casual.',
     price: 2200, comparePrice: 3000,
-    category: 'Pants', subCategory: 'Chinos', brand: 'StylePK',
     colors: ['Khaki', 'Beige', 'Olive', 'Navy'],
     sizes: ['28', '30', '32', '34', '36', '38'],
     material: 'Cotton Twill', pattern: 'Solid', stock: 60,
@@ -133,7 +125,6 @@ const sampleProducts = [
     name: 'Printed Khaddar Shalwar Kameez',
     description: 'Warm khaddar fabric shalwar kameez set with geometric block print. Includes matching shalwar and dupatta.',
     price: 3200, comparePrice: 4200,
-    category: 'Kurtas', subCategory: 'Winter', brand: 'PakFashion',
     colors: ['Rust', 'Teal', 'Burgundy', 'Forest Green'],
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
     material: 'Khaddar', pattern: 'Block Print', stock: 40,
@@ -148,7 +139,6 @@ const sampleProducts = [
     name: 'Denim Jacket - Classic Blue',
     description: 'Iconic classic blue denim jacket with button closure and chest pockets. A wardrobe staple that never goes out of style.',
     price: 5500, comparePrice: 7000,
-    category: 'Jackets', subCategory: 'Denim', brand: 'DenimCraft',
     colors: ['Classic Blue', 'Light Blue', 'Black'],
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
     material: 'Denim', pattern: 'Solid', stock: 25,
@@ -163,7 +153,6 @@ const sampleProducts = [
     name: 'Maxi Dress - Bohemian',
     description: 'Free-flowing bohemian maxi dress with intricate paisley pattern. Perfect for festivals, beach outings, and casual outings.',
     price: 3500, comparePrice: 4800,
-    category: 'Dresses', subCategory: 'Maxi', brand: 'BloomWear',
     colors: ['Terracotta', 'Cobalt Blue', 'Sage Green'],
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
     material: 'Rayon', pattern: 'Paisley', stock: 30,
@@ -178,7 +167,6 @@ const sampleProducts = [
     name: 'Polo Shirt - Navy Blue',
     description: 'Classic navy blue polo shirt in premium pique cotton. Smart casual essential for a polished everyday look.',
     price: 1650, comparePrice: 2200,
-    category: 'T-Shirts', subCategory: 'Polo', brand: 'UrbanTee',
     colors: ['Navy', 'Black', 'White', 'Burgundy', 'Forest Green'],
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     material: 'Pique Cotton', pattern: 'Solid', stock: 80,

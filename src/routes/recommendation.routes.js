@@ -7,7 +7,7 @@ const { protect, optionalAuth } = require('../middleware/auth');
 router.get('/trending', getTrending);
 router.get('/similar/:productId', getSimilar);
 router.get('/personalized', protect, getPersonalized);
-router.get('/try-on-based', protect, getTryOnBased);
+// router.get('/try-on-based', protect, getTryOnBased);
 router.post('/track', protect, trackInteraction);
 
 module.exports = router;

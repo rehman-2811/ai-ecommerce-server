@@ -5,6 +5,8 @@ const { prisma } = require('../config/database');
 const { generateAccessToken, generateRefreshToken, verifyRefreshToken, setTokenCookies, clearTokenCookies } = require('../utils/jwt');
 const { sendEmail } = require('../services/email.service');
 const { logger } = require('../utils/logger');
+const { OAuth2Client } = require('google-auth-library');
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 // @desc    Register new user
 // @route   POST /api/auth/register
@@ -302,4 +304,157 @@ const changePassword = async (req, res) => {
   }
 };
 
-module.exports = { register, login, logout, refreshToken, getMe, forgotPassword, resetPassword, updateProfile, changePassword };
+// google authentication//////////
+
+// @desc    Google OAuth — Sign In / Sign Up
+// @route   POST /api/auth/google
+const googleAuth = async (req, res) => {
+  try {
+    const { token } = req.body;
+
+    if (!token) {
+      return res.status(400).json({ success: false, message: 'Google token required' });
+    }
+
+    // Fetch user info from Google using the access_token
+    const userInfoResponse = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+
+    if (!userInfoResponse.ok) {
+      throw new Error('Failed to fetch user info from Google');
+    }
+
+    const payload = await userInfoResponse.json();
+    const { email, name, picture, sub } = payload;
+
+    if (!email) {
+      return res.status(400).json({ success: false, message: 'Could not get email from Google' });
+    }
+
+    // Check if user exists
+    let user = await prisma.user.findUnique({
+      where: { email: email.toLowerCase() }
+    });
+
+    if (user) {
+      // Update avatar if needed
+      if (picture && !user.avatar) {
+        user = await prisma.user.update({
+          where: { id: user.id },
+          data: { avatar: picture, isVerified: true }
+        });
+      }
+    } else {
+      // Create new user
+      user = await prisma.user.create({
+        data: {
+          name: name || email.split('@')[0],
+          email: email.toLowerCase(),
+          password: null,
+          avatar: picture || null,
+          role: 'CUSTOMER',
+          isVerified: true,
+        }
+      });
+
+      // Create cart for new user
+      await prisma.cart.create({ data: { userId: user.id } });
+    }
+
+    // Generate tokens
+    const accessToken = generateAccessToken(user.id, user.role);
+    const refreshToken = generateRefreshToken(user.id);
+
+    // Save refresh token
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { refreshToken }
+    });
+
+    // Set cookies
+    setTokenCookies(res, accessToken, refreshToken);
+
+    // Send response
+    res.json({
+      success: true,
+      message: user ? 'Logged in with Google' : 'Account created with Google',
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        avatar: user.avatar,
+      },
+      accessToken
+    });
+
+  } catch (error) {
+    console.error('Google auth error:', error);
+    res.status(500).json({ success: false, message: 'Google authentication failed: ' + error.message });
+  }
+};
+
+
+
+const googleAuthUserInfo = async (req, res) => {
+  try {
+    const { email, name, picture, sub } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ success: false, message: 'Email required from Google' });
+    }
+
+    // ── User dhundo ya banao ──────────────────────────────────
+    let user = await prisma.user.findUnique({
+      where: { email: email.toLowerCase() }
+    });
+
+    if (user) {
+      // Existing user — avatar update karo agar nahi hai
+      if (picture && !user.avatar) {
+        user = await prisma.user.update({
+          where: { id: user.id },
+          data: { avatar: picture, isVerified: true }
+        });
+      }
+    } else {
+      // Naya user banao
+      user = await prisma.user.create({
+        data: {
+          name: name || email.split('@')[0],
+          email: email.toLowerCase(),
+          password: null,
+          avatar: picture || null,
+          role: 'CUSTOMER',
+          isVerified: true,
+        }
+      });
+      await prisma.cart.create({ data: { userId: user.id } });
+    }
+
+    // JWT banao
+    const accessToken = generateAccessToken(user.id, user.role);
+    const refreshToken = generateRefreshToken(user.id);
+
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { refreshToken }
+    });
+
+    setTokenCookies(res, accessToken, refreshToken);
+
+    res.json({
+      success: true,
+      user: { id: user.id, name: user.name, email: user.email, role: user.role, avatar: user.avatar },
+      accessToken
+    });
+
+  } catch (error) {
+    logger.error('Google userinfo auth error:', error);
+    res.status(500).json({ success: false, message: 'Google authentication failed' });
+  }
+};
+
+
+module.exports = { register, login, logout, refreshToken, getMe, forgotPassword, resetPassword, updateProfile, changePassword, googleAuth, googleAuthUserInfo };
