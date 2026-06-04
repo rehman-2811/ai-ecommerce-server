@@ -751,3 +751,14 @@
 {"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-27 17:43:48"}
 {"level":"info","message":"Environment: development","timestamp":"2026-04-27 17:43:48"}
 {"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-27 17:43:49"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-04 14:52:43"}
+{"level":"info","message":"Environment: development","timestamp":"2026-06-04 14:52:43"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-04 14:52:44"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-04 14:56:14"}
+{"level":"info","message":"Environment: development","timestamp":"2026-06-04 14:56:14"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-04 14:56:15"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-04 14:56:39"}
+{"level":"info","message":"Environment: development","timestamp":"2026-06-04 14:56:39"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-04 14:56:39"}
+{"level":"info","message":"boot ok","timestamp":"2026-06-04 14:56:43"}
+{"level":"info","message":"vercel-safe logger ready","timestamp":"2026-06-04 14:57:38"}
