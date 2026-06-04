@@ -751,3 +751,19 @@
 {"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-27 17:43:48"}
 {"level":"info","message":"Environment: development","timestamp":"2026-04-27 17:43:48"}
 {"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-27 17:43:49"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-27 18:14:27"}
+{"level":"info","message":"Environment: development","timestamp":"2026-04-27 18:14:27"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-27 18:14:27"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-05-25 11:36:02"}
+{"level":"info","message":"Environment: development","timestamp":"2026-05-25 11:36:02"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-05-25 11:36:03"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-04 14:20:15"}
+{"level":"info","message":"Environment: development","timestamp":"2026-06-04 14:20:15"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-04 14:20:15"}
+{"level":"info","message":"Email sent: <b9e3e98f-6550-a75b-20d6-9ca3341c0b14@Aqua Fits>","timestamp":"2026-06-04 14:22:32"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-04 14:25:20"}
+{"level":"info","message":"Environment: development","timestamp":"2026-06-04 14:25:20"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-04 14:25:20"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-04 14:26:19"}
+{"level":"info","message":"Environment: development","timestamp":"2026-06-04 14:26:19"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-04 14:26:20"}
