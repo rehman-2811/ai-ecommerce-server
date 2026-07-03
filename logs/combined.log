@@ -762,3 +762,37 @@
 {"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-04 14:56:39"}
 {"level":"info","message":"boot ok","timestamp":"2026-06-04 14:56:43"}
 {"level":"info","message":"vercel-safe logger ready","timestamp":"2026-06-04 14:57:38"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-04 15:14:22"}
+{"level":"info","message":"Environment: development","timestamp":"2026-06-04 15:14:22"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-04 15:14:22"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-05 20:22:54"}
+{"level":"info","message":"Environment: development","timestamp":"2026-06-05 20:22:54"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-05 20:22:56"}
+{"level":"info","message":"vercel-safe logger ready","timestamp":"2026-06-05 20:24:08"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-22 14:36:01"}
+{"level":"info","message":"Environment: development","timestamp":"2026-06-22 14:36:01"}
+{"clientVersion":"6.19.3","level":"error","message":"Database connection failed: Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: request timed out, labels: {}, source: None)","name":"PrismaClientInitializationError","stack":"PrismaClientInitializationError: Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: request timed out, labels: {}, source: None)\n    at r (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\@prisma\\client\\runtime\\library.js:112:2770)","timestamp":"2026-06-22 14:36:31"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-22 14:40:50"}
+{"level":"info","message":"Environment: development","timestamp":"2026-06-22 14:40:50"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-22 14:40:58"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-22 15:06:36"}
+{"level":"info","message":"Environment: development","timestamp":"2026-06-22 15:06:36"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-22 15:06:37"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-30 12:33:51"}
+{"level":"info","message":"Environment: development","timestamp":"2026-06-30 12:33:51"}
+{"clientVersion":"6.19.3","level":"error","message":"Database connection failed: Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: proto error: io error: A socket operation was attempted to an unreachable network. (os error 10051), labels: {}, source: None)","name":"PrismaClientInitializationError","stack":"PrismaClientInitializationError: Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: proto error: io error: A socket operation was attempted to an unreachable network. (os error 10051), labels: {}, source: None)\n    at r (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\@prisma\\client\\runtime\\library.js:112:2770)","timestamp":"2026-06-30 12:33:52"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-30 12:35:00"}
+{"level":"info","message":"Environment: development","timestamp":"2026-06-30 12:35:00"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-30 12:35:08"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-30 12:39:37"}
+{"level":"info","message":"Environment: development","timestamp":"2026-06-30 12:39:37"}
+{"clientVersion":"6.19.3","level":"error","message":"Database connection failed: Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: request timed out, labels: {}, source: None)","name":"PrismaClientInitializationError","stack":"PrismaClientInitializationError: Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: request timed out, labels: {}, source: None)\n    at r (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\@prisma\\client\\runtime\\library.js:112:2770)","timestamp":"2026-06-30 12:40:08"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-30 12:40:36"}
+{"level":"info","message":"Environment: development","timestamp":"2026-06-30 12:40:36"}
+{"clientVersion":"6.19.3","level":"error","message":"Database connection failed: Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: request timed out, labels: {}, source: None)","name":"PrismaClientInitializationError","stack":"PrismaClientInitializationError: Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: request timed out, labels: {}, source: None)\n    at r (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\@prisma\\client\\runtime\\library.js:112:2770)","timestamp":"2026-06-30 12:41:07"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-30 12:41:55"}
+{"level":"info","message":"Environment: development","timestamp":"2026-06-30 12:41:55"}
+{"clientVersion":"6.19.3","level":"error","message":"Database connection failed: Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: request timed out, labels: {}, source: None)","name":"PrismaClientInitializationError","stack":"PrismaClientInitializationError: Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: request timed out, labels: {}, source: None)\n    at r (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\@prisma\\client\\runtime\\library.js:112:2770)","timestamp":"2026-06-30 12:42:25"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-30 12:44:35"}
+{"level":"info","message":"Environment: development","timestamp":"2026-06-30 12:44:35"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-30 12:44:36"}
