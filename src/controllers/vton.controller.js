@@ -1,6 +1,6 @@
 // src/controllers/vton.controller.js
 const { prisma } = require('../config/database');
-const { colabService } = require('../services/colab.service');
+const { fashnService } = require('../services/fashn.service');
 const { uploadBuffer } = require('../config/cloudinary');
 const { logger } = require('../utils/logger');
 
@@ -74,7 +74,7 @@ const processTryOn = async (sessionId, userImageUrl, garmentImageUrl) => {
 
   while (retries < 3) {
     try {
-      const result = await colabService.submitTryOn(userImageUrl, garmentImageUrl);
+      const result = await fashnService.submitTryOn(userImageUrl, garmentImageUrl);
       
       const processingTime = Math.round((Date.now() - startTime) / 1000);
 
