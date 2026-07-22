@@ -1,5 +1,11 @@
 // server.js - Main Entry Point
 require('dotenv').config();
+require('dotenv').config();
+
+console.log("=================================");
+console.log("EMAIL_USER =", process.env.EMAIL_USER);
+console.log("EMAIL_PASS =", process.env.EMAIL_PASS ? "Loaded ✅" : "Not Loaded ❌");
+console.log("=================================");
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -33,7 +39,7 @@ app.use(helmet({
 
 
 app.use(cors({
-  origin: ["http://localhost:5173","http://localhost:5174","http://localhost:5175","http://localhost:5176"],
+  origin: ["http://localhost:5173","http://localhost:5174","http://localhost:5175","http://localhost:5176","https://ai-ecommerce-admin-xi.vercel.app/","https://ai-ecommerce-app-one.vercel.app/"],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']

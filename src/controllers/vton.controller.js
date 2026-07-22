@@ -197,7 +197,7 @@ const getHistory = async (req, res) => {
       prisma.tryOnSession.findMany({
         where: { userId: req.user.id },
         include: {
-          product: { select: { id: true, name: true, price: true, images: true, category: true } }
+          product: { select: { id: true, name: true, price: true, images: true,  } }
         },
         orderBy: { createdAt: 'desc' },
         skip, take: parseInt(limit)

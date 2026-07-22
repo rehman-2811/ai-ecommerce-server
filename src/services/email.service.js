@@ -59,89 +59,56 @@ const sendOrderConfirmation = async (user, order) => {
     to: user.email,
     subject: `Order Confirmed #${order.orderNumber}`,
     html: `
-<table width="100%" cellpadding="0" cellspacing="0" style="background:#0f0f0f;padding:20px;font-family:Arial,sans-serif">
-  <tr>
-    <td align="center">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f7;padding:30px;font-family:Arial,sans-serif;">
+<tr><td align="center">
+<table width="640" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:16px;border:1px solid #e5e7eb;">
+<tr><td style="background:#111827;padding:30px;text-align:center;">
+<h1 style="margin:0;color:#d4af37;letter-spacing:2px;">AQUA FITS</h1>
+<p style="margin:8px 0 0;color:#d1d5db;">Premium Fashion Experience</p>
+</td></tr>
+<tr><td style="padding:30px;">
+<div style="background:#ecfdf5;border:1px solid #bbf7d0;padding:12px 18px;border-radius:30px;display:inline-block;color:#166534;font-weight:bold;">✔ ORDER CONFIRMED</div>
+<h2 style="color:#111827;">Hello ${user.name},</h2>
+<p style="color:#6b7280;">Thank you for shopping with Aqua Fits. Your order has been confirmed successfully.</p>
 
-      <!-- Main Container -->
-      <table width="600" cellpadding="0" cellspacing="0" style="background:#1a1a1a;border:1px solid #2c2c2c">
-
-        <!-- Header -->
-        <tr>
-          <td style="background:#000;padding:20px;text-align:center">
-            <h1 style="color:#d8a20e;margin:0;letter-spacing:1px">
-              AI Ecommerce
-            </h1>
-          </td>
-        </tr>
-
-        <!-- Body -->
-        <tr>
-          <td style="padding:25px;color:#e0e0e0">
-
-            <h2 style="color:#ffffff;margin-bottom:10px">
-              🎉 Order Confirmed!
-            </h2>
-
-            <p style="color:#ccc;font-size:14px">
-              Hello <strong>${user.name}</strong>, your order has been successfully placed.
-            </p>
-
-            <!-- Order Box -->
-            <div style="background:#111;border:1px solid #333;padding:12px;margin:15px 0">
-              <p style="margin:0;color:#d8a20e">
-                <strong>Order #:</strong> ${order.orderNumber}
-              </p>
-            </div>
-
-            <!-- Items Table -->
-            <table width="100%" cellpadding="8" cellspacing="0" style="border-collapse:collapse;margin-top:15px;font-size:14px">
-              <tr style="background:#222;color:#d8a20e">
-                <th align="left">Product</th>
-                <th align="center">Qty</th>
-                <th align="right">Price</th>
-              </tr>
-              ${itemsHtml}
-            </table>
-
-            <!-- Totals -->
-            <div style="margin-top:20px;text-align:right;border-top:1px solid #333;padding-top:10px">
-              <p style="margin:5px 0"><strong>Subtotal:</strong> PKR ${order.subtotal.toLocaleString()}</p>
-              <p style="margin:5px 0"><strong>Shipping:</strong> PKR ${order.shippingCost.toLocaleString()}</p>
-              <p style="margin:8px 0;color:#d8a20e;font-size:16px">
-                <strong>Total: PKR ${order.total.toLocaleString()}</strong>
-              </p>
-            </div>
-
-            <!-- Button -->
-            <div style="text-align:center;margin:25px 0">
-              <a href="#"
-                 style="background:#d8a20e;color:#000;padding:12px 25px;text-decoration:none;
-                 font-weight:bold;display:inline-block;border-radius:4px">
-                 View Order
-              </a>
-            </div>
-
-            <!-- Footer text -->
-            <p style="text-align:center;color:#888;font-size:13px">
-              We'll notify you when your order ships 🚚
-            </p>
-
-          </td>
-        </tr>
-
-        <!-- Footer -->
-        <tr>
-          <td style="background:#000;color:#777;text-align:center;padding:12px;font-size:12px">
-            © 2026 AI Ecommerce • Premium Experience
-          </td>
-        </tr>
-
-      </table>
-
-    </td>
-  </tr>
+<table width="100%" cellpadding="12" cellspacing="0" style="border:1px solid #e5e7eb;border-radius:10px;background:#fafafa;">
+<tr><td><b>Order #</b><br>${order.orderNumber}</td>
+<td align="right"><b>Total</b><br>PKR ${order.total.toLocaleString()}</td></tr>
 </table>
+
+<h3 style="margin-top:30px;color:#111827;">Items</h3>
+
+<table width="100%" cellpadding="10" cellspacing="0" style="border-collapse:collapse;">
+<tr style="background:#111827;color:#d4af37;">
+<th align="left">Product</th>
+<th align="center">Qty</th>
+<th align="right">Price</th>
+</tr>
+${itemsHtml}
+</table>
+
+<table width="100%" cellpadding="6" cellspacing="0" style="margin-top:25px;">
+<tr><td>Subtotal</td><td align="right">PKR ${order.subtotal.toLocaleString()}</td></tr>
+<tr><td>Shipping</td><td align="right">PKR ${order.shippingCost.toLocaleString()}</td></tr>
+<tr><td style="border-top:2px solid #e5e7eb;font-weight:bold;font-size:18px;">Grand Total</td>
+<td align="right" style="border-top:2px solid #e5e7eb;color:#d4af37;font-weight:bold;font-size:18px;">PKR ${order.total.toLocaleString()}</td></tr>
+</table>
+
+<div style="text-align:center;margin:30px 0;">
+<a href="#" style="background:#d4af37;color:#111827;text-decoration:none;padding:14px 34px;border-radius:40px;font-weight:bold;">View Order</a>
+</div>
+
+<hr style="border:none;border-top:1px solid #e5e7eb;">
+<p style="color:#6b7280;text-align:center;">Need help? Reply to this email or contact support.</p>
+</td></tr>
+
+<tr><td style="background:#111827;color:#9ca3af;text-align:center;padding:20px;">
+© 2026 Aqua Fits • Premium Experience
+</td></tr>
+</table>
+</td></tr>
+</table>
+
 `
   });
 };
