@@ -751,48 +751,44 @@
 {"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-04-27 17:43:48"}
 {"level":"info","message":"Environment: development","timestamp":"2026-04-27 17:43:48"}
 {"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-04-27 17:43:49"}
-{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-04 14:52:43"}
-{"level":"info","message":"Environment: development","timestamp":"2026-06-04 14:52:43"}
-{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-04 14:52:44"}
-{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-04 14:56:14"}
-{"level":"info","message":"Environment: development","timestamp":"2026-06-04 14:56:14"}
-{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-04 14:56:15"}
-{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-04 14:56:39"}
-{"level":"info","message":"Environment: development","timestamp":"2026-06-04 14:56:39"}
-{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-04 14:56:39"}
-{"level":"info","message":"boot ok","timestamp":"2026-06-04 14:56:43"}
-{"level":"info","message":"vercel-safe logger ready","timestamp":"2026-06-04 14:57:38"}
-{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-04 15:14:22"}
-{"level":"info","message":"Environment: development","timestamp":"2026-06-04 15:14:22"}
-{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-04 15:14:22"}
-{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-05 20:22:54"}
-{"level":"info","message":"Environment: development","timestamp":"2026-06-05 20:22:54"}
-{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-05 20:22:56"}
-{"level":"info","message":"vercel-safe logger ready","timestamp":"2026-06-05 20:24:08"}
-{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-22 14:36:01"}
-{"level":"info","message":"Environment: development","timestamp":"2026-06-22 14:36:01"}
-{"clientVersion":"6.19.3","level":"error","message":"Database connection failed: Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: request timed out, labels: {}, source: None)","name":"PrismaClientInitializationError","stack":"PrismaClientInitializationError: Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: request timed out, labels: {}, source: None)\n    at r (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\@prisma\\client\\runtime\\library.js:112:2770)","timestamp":"2026-06-22 14:36:31"}
-{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-22 14:40:50"}
-{"level":"info","message":"Environment: development","timestamp":"2026-06-22 14:40:50"}
-{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-22 14:40:58"}
-{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-22 15:06:36"}
-{"level":"info","message":"Environment: development","timestamp":"2026-06-22 15:06:36"}
-{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-22 15:06:37"}
-{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-30 12:33:51"}
-{"level":"info","message":"Environment: development","timestamp":"2026-06-30 12:33:51"}
-{"clientVersion":"6.19.3","level":"error","message":"Database connection failed: Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: proto error: io error: A socket operation was attempted to an unreachable network. (os error 10051), labels: {}, source: None)","name":"PrismaClientInitializationError","stack":"PrismaClientInitializationError: Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: proto error: io error: A socket operation was attempted to an unreachable network. (os error 10051), labels: {}, source: None)\n    at r (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\@prisma\\client\\runtime\\library.js:112:2770)","timestamp":"2026-06-30 12:33:52"}
-{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-30 12:35:00"}
-{"level":"info","message":"Environment: development","timestamp":"2026-06-30 12:35:00"}
-{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-30 12:35:08"}
-{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-30 12:39:37"}
-{"level":"info","message":"Environment: development","timestamp":"2026-06-30 12:39:37"}
-{"clientVersion":"6.19.3","level":"error","message":"Database connection failed: Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: request timed out, labels: {}, source: None)","name":"PrismaClientInitializationError","stack":"PrismaClientInitializationError: Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: request timed out, labels: {}, source: None)\n    at r (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\@prisma\\client\\runtime\\library.js:112:2770)","timestamp":"2026-06-30 12:40:08"}
-{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-30 12:40:36"}
-{"level":"info","message":"Environment: development","timestamp":"2026-06-30 12:40:36"}
-{"clientVersion":"6.19.3","level":"error","message":"Database connection failed: Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: request timed out, labels: {}, source: None)","name":"PrismaClientInitializationError","stack":"PrismaClientInitializationError: Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: request timed out, labels: {}, source: None)\n    at r (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\@prisma\\client\\runtime\\library.js:112:2770)","timestamp":"2026-06-30 12:41:07"}
-{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-30 12:41:55"}
-{"level":"info","message":"Environment: development","timestamp":"2026-06-30 12:41:55"}
-{"clientVersion":"6.19.3","level":"error","message":"Database connection failed: Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: request timed out, labels: {}, source: None)","name":"PrismaClientInitializationError","stack":"PrismaClientInitializationError: Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: request timed out, labels: {}, source: None)\n    at r (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\@prisma\\client\\runtime\\library.js:112:2770)","timestamp":"2026-06-30 12:42:25"}
-{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-06-30 12:44:35"}
-{"level":"info","message":"Environment: development","timestamp":"2026-06-30 12:44:35"}
-{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-06-30 12:44:36"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-03 22:50:57"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-03 22:50:57"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-03 22:50:58"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-03 22:57:10"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-03 22:57:10"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-03 22:57:21"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-03 22:58:32"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-03 22:58:32"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-03 22:58:37"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-03 22:59:51"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-03 22:59:51"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-03 22:59:51"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-03 23:05:00"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-03 23:05:00"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-03 23:05:03"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-03 23:05:03"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-03 23:05:04"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-03 23:07:45"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-03 23:07:45"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-03 23:07:46"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-03 23:07:50"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-03 23:07:50"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-03 23:07:51"}
+{"level":"info","message":"Email sent: <374927c4-5620-f823-0ef3-d5f2c00f6765@Aqua Fits>","timestamp":"2026-07-05 16:39:12"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-06 14:07:09"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-06 14:07:09"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-06 14:07:09"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-08 15:56:52"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-08 15:56:52"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-08 15:56:52"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-10 19:18:38"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-10 19:18:38"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-10 19:18:44"}
+{"code":"EAUTH","command":"AUTH PLAIN","level":"error","message":"Email send error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31174ac14f2sm44163190eec.27 - gsmtp","response":"535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31174ac14f2sm44163190eec.27 - gsmtp","responseCode":535,"stack":"Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31174ac14f2sm44163190eec.27 - gsmtp\n    at SMTPConnection._formatError (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:809:19)\n    at SMTPConnection._actionAUTHComplete (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:1588:34)\n    at SMTPConnection.<anonymous> (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:556:26)\n    at SMTPConnection._processResponse (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:993:20)\n    at SMTPConnection._onData (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:774:14)\n    at SMTPConnection._onSocketData (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:195:44)\n    at TLSSocket.emit (node:events:518:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)","timestamp":"2026-07-10 19:20:18"}
+{"level":"warn","message":"Welcome email failed:","timestamp":"2026-07-10 19:20:18"}
+{"level":"info","message":"Submitting try-on request to FASHN AI...","timestamp":"2026-07-10 19:20:43"}
+{"level":"info","message":"Prediction created: 60447ddf-43ad-4b17-bf87-763f0cf98751","timestamp":"2026-07-10 19:20:53"}
+{"level":"info","message":"Prediction 60447ddf-43ad-4b17-bf87-763f0cf98751: processing (1/30)","timestamp":"2026-07-10 19:21:01"}
+{"level":"info","message":"Prediction 60447ddf-43ad-4b17-bf87-763f0cf98751: processing (2/30)","timestamp":"2026-07-10 19:21:09"}
+{"level":"info","message":"Prediction 60447ddf-43ad-4b17-bf87-763f0cf98751 completed successfully.","timestamp":"2026-07-10 19:21:16"}
+{"level":"info","message":"Try-on 6a50ffba6602b832a67cd3df completed in 33s","timestamp":"2026-07-10 19:21:17"}
