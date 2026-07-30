@@ -890,3 +890,350 @@
 {"level":"info","message":"Prediction 9b498a96-b245-4983-8571-5b4677aa9ee9: processing (3/30)","timestamp":"2026-07-20 18:49:08"}
 {"level":"info","message":"Prediction 9b498a96-b245-4983-8571-5b4677aa9ee9 completed successfully.","timestamp":"2026-07-20 18:49:15"}
 {"level":"info","message":"Try-on 6a5e273919245ad5f939f11f completed in 33s","timestamp":"2026-07-20 18:49:15"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-24 19:41:28"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-24 19:41:28"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-24 19:41:29"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-25 15:19:26"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-25 15:19:26"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-25 15:19:27"}
+{"level":"info","message":"Email sent: <e940bf90-28d0-8301-9edb-64af1826ef8a@Aqua Fits>","timestamp":"2026-07-25 15:20:29"}
+{"level":"info","message":"Email sent: <ef3b491f-87fc-c5a7-3f27-7e3677e1c516@Aqua Fits>","timestamp":"2026-07-25 15:22:04"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-26 01:35:18"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-26 01:35:18"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-26 01:35:19"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-26 01:37:46"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-26 01:37:46"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-26 01:37:47"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-26 01:37:55"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-26 01:37:55"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-26 01:37:55"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-26 01:37:55"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-26 01:37:55"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-26 02:00:47"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-26 02:00:47"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-26 02:00:47"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-26 02:00:47"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-26 02:00:47"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-26 02:05:29"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-26 02:05:29"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-26 02:05:29"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-26 02:05:29"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-26 02:05:30"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-26 02:46:20"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-26 02:46:20"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-26 02:46:20"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-26 02:46:20"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-26 02:46:20"}
+{"headers":{"access-control-allow-credentials":"true","access-control-allow-methods":"GET, HEAD, PUT, PATCH, POST, DELETE","access-control-allow-origin":"*","access-control-expose-headers":"Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required","access-control-max-age":"300","cache-control":"no-cache, no-store","connection":"keep-alive","content-length":"125","content-security-policy":"base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests","content-type":"application/json","date":"Sun, 26 Jul 2026 05:15:03 GMT","server":"nginx","strict-transport-security":"max-age=63072000; includeSubDomains; preload","vary":"Origin","www-authenticate":"Bearer realm=\"Stripe\"","x-robots-tag":"none","x-wc":"383"},"level":"error","message":"Create payment intent error: Invalid API Key provided: sk_test_***********_key","raw":{"headers":{"access-control-allow-credentials":"true","access-control-allow-methods":"GET, HEAD, PUT, PATCH, POST, DELETE","access-control-allow-origin":"*","access-control-expose-headers":"Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required","access-control-max-age":"300","cache-control":"no-cache, no-store","connection":"keep-alive","content-length":"125","content-security-policy":"base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests","content-type":"application/json","date":"Sun, 26 Jul 2026 05:15:03 GMT","server":"nginx","strict-transport-security":"max-age=63072000; includeSubDomains; preload","vary":"Origin","www-authenticate":"Bearer realm=\"Stripe\"","x-robots-tag":"none","x-wc":"383"},"message":"Invalid API Key provided: sk_test_***********_key","statusCode":401,"type":"invalid_request_error"},"rawType":"invalid_request_error","stack":"Error: Invalid API Key provided: sk_test_***********_key\n    at generateV1Error (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\stripe\\cjs\\Error.js:20:16)\n    at D:\\FinalProject\\ai-ecommerce-server\\node_modules\\stripe\\cjs\\RequestSender.js:116:62\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\nOriginating from:\n    at PaymentIntentResource._makeRequest (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\stripe\\cjs\\StripeResource.js:59:31)\n    at PaymentIntentResource.create (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\stripe\\cjs\\resources\\PaymentIntents.js:28:21)\n    at createCardPaymentIntent (D:\\FinalProject\\ai-ecommerce-server\\src\\controllers\\payment.controller.js:156:55)","statusCode":401,"timestamp":"2026-07-26 10:15:04","type":"StripeAuthenticationError"}
+{"level":"info","message":"Email sent: <47309ec2-7baf-dd0d-5406-ad608f6dda41@Aqua Fits>","timestamp":"2026-07-26 10:15:09"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-26 10:17:49"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-26 10:17:49"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-26 10:17:49"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-26 10:17:49"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-26 10:17:54"}
+{"level":"info","message":"Email sent: <5ff6ae1e-fa4a-8546-9921-6ba6740f7aa3@Aqua Fits>","timestamp":"2026-07-26 10:20:28"}
+{"level":"info","message":"Email sent: <5072718b-6c62-b844-ab3b-e0b7abc18ad3@Aqua Fits>","timestamp":"2026-07-26 10:22:42"}
+{"level":"info","message":"Email sent: <486834f8-8f55-74de-8e05-7b4c8aaf72bf@Aqua Fits>","timestamp":"2026-07-26 10:37:14"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-26 10:45:18"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-26 10:45:18"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-26 10:45:18"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-26 10:45:18"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-26 10:45:22"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-26 10:45:22"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-26 10:45:22"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-26 10:45:22"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-26 10:45:22"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-26 10:46:56"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-26 10:46:56"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-26 10:46:56"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-26 10:46:56"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-26 10:46:56"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-26 10:47:54"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-26 10:47:54"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-26 10:47:54"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-26 10:47:54"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-26 10:48:04"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-26 10:48:29"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-26 10:48:29"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-26 10:48:29"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-26 10:48:29"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-26 10:48:29"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-26 10:49:35"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-26 10:49:35"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-26 10:49:35"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-26 10:49:35"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-26 10:49:40"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-26 10:51:00"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-26 10:51:00"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-26 10:51:00"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-26 10:51:00"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-26 10:51:00"}
+{"level":"info","message":"Email sent: <bb71c454-1d85-582c-7501-4900e3b15deb@Aqua Fits>","timestamp":"2026-07-26 10:57:25"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 08:45:22"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 08:45:22"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 08:45:22"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 08:45:22"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 08:45:28"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 08:47:20"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 08:47:20"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 08:47:20"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 08:47:20"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 08:47:20"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 08:48:35"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 08:48:35"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 08:48:35"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 08:48:35"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 08:48:35"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 08:49:12"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 08:49:12"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 08:49:12"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 08:49:12"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 08:49:13"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 08:50:33"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 08:50:33"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 08:50:33"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 08:50:33"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 08:50:33"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 08:51:08"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 08:51:08"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 08:51:08"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 08:51:08"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 08:51:17"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 08:51:17"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 08:51:17"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 08:51:17"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 08:51:18"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 08:51:44"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 08:51:44"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 08:51:44"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 08:51:44"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 08:51:44"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 08:53:32"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 08:53:32"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 08:53:32"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 08:53:32"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 08:53:32"}
+{"level":"info","message":"Email sent: <ca237970-a3a3-838b-6ba1-d9e057dda303@Aqua Fits>","timestamp":"2026-07-29 08:57:33"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 09:16:14"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 09:16:14"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 09:16:14"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 09:16:14"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 09:16:14"}
+{"code":"EAUTH","command":"AUTH PLAIN","level":"error","message":"Email send error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-47fb647a8d4sm4418907f8f.0 - gsmtp","response":"535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-47fb647a8d4sm4418907f8f.0 - gsmtp","responseCode":535,"stack":"Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-47fb647a8d4sm4418907f8f.0 - gsmtp\n    at SMTPConnection._formatError (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:809:19)\n    at SMTPConnection._actionAUTHComplete (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:1588:34)\n    at SMTPConnection.<anonymous> (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:556:26)\n    at SMTPConnection._processResponse (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:993:20)\n    at SMTPConnection._onData (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:774:14)\n    at SMTPConnection._onSocketData (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:195:44)\n    at TLSSocket.emit (node:events:518:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)","timestamp":"2026-07-29 09:17:58"}
+{"level":"warn","message":"Order email failed:","timestamp":"2026-07-29 09:17:58"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 09:22:43"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 09:22:43"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 09:22:43"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 09:22:43"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 09:22:43"}
+{"code":"EAUTH","command":"AUTH PLAIN","level":"error","message":"Email send error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-47fb6acbfb3sm4320598f8f.14 - gsmtp","response":"535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-47fb6acbfb3sm4320598f8f.14 - gsmtp","responseCode":535,"stack":"Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-47fb6acbfb3sm4320598f8f.14 - gsmtp\n    at SMTPConnection._formatError (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:809:19)\n    at SMTPConnection._actionAUTHComplete (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:1588:34)\n    at SMTPConnection.<anonymous> (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:556:26)\n    at SMTPConnection._processResponse (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:993:20)\n    at SMTPConnection._onData (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:774:14)\n    at SMTPConnection._onSocketData (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:195:44)\n    at TLSSocket.emit (node:events:518:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)","timestamp":"2026-07-29 09:23:37"}
+{"level":"warn","message":"Order email failed:","timestamp":"2026-07-29 09:23:37"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 09:26:34"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 09:26:34"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 09:26:34"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 09:26:34"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 09:26:35"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 09:28:27"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 09:28:27"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 09:28:27"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 09:28:27"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 09:28:27"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 09:29:47"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 09:29:47"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 09:29:47"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 09:29:47"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 09:29:47"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 09:29:51"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 09:29:51"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 09:29:51"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 09:29:51"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 09:29:51"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 09:29:56"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 09:29:56"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 09:29:56"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 09:29:56"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 09:30:01"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 09:30:01"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 09:30:01"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 09:30:01"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 09:30:11"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 09:30:11"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 09:30:11"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 09:30:11"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 09:30:11"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 09:30:16"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 09:30:16"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 09:30:16"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 09:30:16"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 09:30:16"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 09:30:20"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 09:30:20"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 09:30:20"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 09:30:20"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 09:30:20"}
+{"code":"EAUTH","command":"AUTH PLAIN","level":"error","message":"Email send error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-47fb6b0ef25sm4465925f8f.24 - gsmtp","response":"535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-47fb6b0ef25sm4465925f8f.24 - gsmtp","responseCode":535,"stack":"Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-47fb6b0ef25sm4465925f8f.24 - gsmtp\n    at SMTPConnection._formatError (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:809:19)\n    at SMTPConnection._actionAUTHComplete (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:1588:34)\n    at SMTPConnection.<anonymous> (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:556:26)\n    at SMTPConnection._processResponse (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:993:20)\n    at SMTPConnection._onData (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:774:14)\n    at SMTPConnection._onSocketData (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:195:44)\n    at TLSSocket.emit (node:events:518:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)","timestamp":"2026-07-29 09:31:05"}
+{"level":"warn","message":"Order email failed:","timestamp":"2026-07-29 09:31:05"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 09:49:06"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 09:49:06"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 09:49:06"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 09:49:06"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 09:49:06"}
+{"code":"EAUTH","command":"AUTH PLAIN","level":"error","message":"Email send error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-496c45b1c2asm125141475e9.5 - gsmtp","response":"535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-496c45b1c2asm125141475e9.5 - gsmtp","responseCode":535,"stack":"Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-496c45b1c2asm125141475e9.5 - gsmtp\n    at SMTPConnection._formatError (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:809:19)\n    at SMTPConnection._actionAUTHComplete (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:1588:34)\n    at SMTPConnection.<anonymous> (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:556:26)\n    at SMTPConnection._processResponse (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:993:20)\n    at SMTPConnection._onData (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:774:14)\n    at SMTPConnection._onSocketData (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:195:44)\n    at TLSSocket.emit (node:events:518:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)","timestamp":"2026-07-29 09:58:04"}
+{"level":"warn","message":"Order email failed:","timestamp":"2026-07-29 09:58:04"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 10:01:02"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 10:01:02"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 10:01:02"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 10:01:02"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 10:01:02"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 10:03:11"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 10:03:11"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 10:03:11"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 10:03:11"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 10:03:12"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 10:03:55"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 10:03:55"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 10:03:55"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 10:03:55"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 10:03:55"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 10:04:09"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 10:04:09"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 10:04:09"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 10:04:09"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 10:04:09"}
+{"code":"EAUTH","command":"AUTH PLAIN","level":"error","message":"Email send error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-47fb6ac44bcsm4544108f8f.11 - gsmtp","response":"535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-47fb6ac44bcsm4544108f8f.11 - gsmtp","responseCode":535,"stack":"Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-47fb6ac44bcsm4544108f8f.11 - gsmtp\n    at SMTPConnection._formatError (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:809:19)\n    at SMTPConnection._actionAUTHComplete (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:1588:34)\n    at SMTPConnection.<anonymous> (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:556:26)\n    at SMTPConnection._processResponse (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:993:20)\n    at SMTPConnection._onData (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:774:14)\n    at SMTPConnection._onSocketData (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:195:44)\n    at TLSSocket.emit (node:events:518:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)","timestamp":"2026-07-29 10:04:46"}
+{"level":"warn","message":"Order email failed:","timestamp":"2026-07-29 10:04:46"}
+{"code":"EAUTH","command":"AUTH PLAIN","level":"error","message":"Email send error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-496c4615681sm130042875e9.11 - gsmtp","response":"535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-496c4615681sm130042875e9.11 - gsmtp","responseCode":535,"stack":"Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-496c4615681sm130042875e9.11 - gsmtp\n    at SMTPConnection._formatError (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:809:19)\n    at SMTPConnection._actionAUTHComplete (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:1588:34)\n    at SMTPConnection.<anonymous> (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:556:26)\n    at SMTPConnection._processResponse (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:993:20)\n    at SMTPConnection._onData (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:774:14)\n    at SMTPConnection._onSocketData (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:195:44)\n    at TLSSocket.emit (node:events:518:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)","timestamp":"2026-07-29 10:09:28"}
+{"level":"warn","message":"Order email failed:","timestamp":"2026-07-29 10:09:28"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-29 10:11:01"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-29 10:11:01"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-29 10:11:01"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-29 10:11:01"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-29 10:11:01"}
+{"level":"info","message":"Email sent: <c8a3abc1-3a74-66b9-7b01-5a8ee79e4546@Aqua Fits>","timestamp":"2026-07-29 10:11:45"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 11:21:05"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-30 11:21:05"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-30 11:21:05"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-30 11:21:05"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-30 11:21:06"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 11:21:18"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-30 11:21:18"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-30 11:21:18"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-30 11:21:18"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-30 11:21:18"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 11:21:26"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-30 11:21:26"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-30 11:21:26"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-30 11:21:26"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-30 11:21:27"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 11:22:06"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-30 11:22:06"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-30 11:22:06"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-30 11:22:06"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-30 11:22:16"}
+{"level":"info","message":"Email sent: <07cd49d3-35c1-d3d6-54a3-0be7e6b0f6d1@Aqua Fits>","timestamp":"2026-07-30 11:40:08"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 11:41:55"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-30 11:41:55"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-30 11:41:55"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-30 11:41:55"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-30 11:41:55"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 11:43:42"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-30 11:43:42"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-30 11:43:42"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-30 11:43:42"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-30 11:43:42"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 11:45:43"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-30 11:45:43"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-30 11:45:43"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-30 11:45:43"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 11:45:50"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-30 11:45:50"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-30 11:45:50"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-30 11:45:50"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 11:45:59"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-30 11:45:59"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-30 11:45:59"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-30 11:45:59"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 11:46:03"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-30 11:46:03"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-30 11:46:03"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-30 11:46:03"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-30 11:46:03"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 12:09:24"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 12:09:24"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 12:09:24"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:09:24"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 12:09:24"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 12:09:24"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 12:09:25"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:09:29"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:09:30"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:09:30"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:09:31"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:09:31"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:09:32"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:09:32"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:09:33"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:09:34"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:09:35"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:09:36"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:09:37"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:09:37"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:09:38"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:09:40"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:09:41"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:09:42"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:09:43"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:09:44"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 12:09:46"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 12:09:47"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 12:09:58"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 12:09:58"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:02"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:02"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:03"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:03"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:03"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:04"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:04"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:05"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:05"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:06"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:07"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:07"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:08"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:09"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:10"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:11"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:12"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:13"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:14"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:15"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:16"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:17"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:18"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:20"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:21"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:22"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:24"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:25"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:27"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:29"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:30"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:32"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:34"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:36"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:37"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:39"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:41"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:43"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:45"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:47"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:49"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:51"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:53"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:55"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:57"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:10:59"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:11:01"}
+{"level":"warn","message":"Redis error (non-fatal):","timestamp":"2026-07-30 12:11:03"}
+{"level":"info","message":"Redis client connected","timestamp":"2026-07-30 12:11:05"}

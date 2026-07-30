@@ -4,6 +4,7 @@ const crypto = require('crypto');
 const { prisma } = require('../config/database');
 const { generateAccessToken, generateRefreshToken, verifyRefreshToken, setTokenCookies, clearTokenCookies } = require('../utils/jwt');
 const { sendEmail } = require('../services/email.service');
+const { welcomeEmailTemplate, passwordResetEmailTemplate } = require('../utils/emailTemplates');
 const { logger } = require('../utils/logger');
 const { OAuth2Client } = require('google-auth-library');
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
@@ -59,10 +60,18 @@ const register = async (req, res) => {
     setTokenCookies(res, accessToken, refreshToken);
 
     // Send welcome email (non-blocking)
+    // sendEmail({
+    //   to: user.email,
+    //   subject: 'Welcome to AI Ecommerce!',
+    //   html: `<h2>Welcome, ${user.name}!</h2><p>Your account has been created successfully.</p>`
+    // }).catch(err => logger.warn('Welcome email failed:', err.message));
+
+    // Send welcome email (non-blocking)
+    const welcomeMail = welcomeEmailTemplate(user);
     sendEmail({
       to: user.email,
-      subject: 'Welcome to AI Ecommerce!',
-      html: `<h2>Welcome, ${user.name}!</h2><p>Your account has been created successfully.</p>`
+      subject: welcomeMail.subject,
+      html: welcomeMail.html
     }).catch(err => logger.warn('Welcome email failed:', err.message));
 
     res.status(201).json({
@@ -208,17 +217,27 @@ const forgotPassword = async (req, res) => {
       data: { resetToken, resetExpiry }
     });
 
+    // const resetUrl = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
+
+    // await sendEmail({
+    //   to: user.email,
+    //   subject: 'Password Reset Request',
+    //   html: `
+    //     <h2>Password Reset</h2>
+    //     <p>You requested a password reset. Click the link below (valid for 30 minutes):</p>
+    //     <a href="${resetUrl}" style="background:#1a1a1a;color:white;padding:12px 24px;text-decoration:none;border-radius:4px;">Reset Password</a>
+    //     <p>If you didn't request this, ignore this email.</p>
+    //   `
+    // });
+
+
     const resetUrl = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
 
+    const resetMail = passwordResetEmailTemplate(user, resetUrl);
     await sendEmail({
       to: user.email,
-      subject: 'Password Reset Request',
-      html: `
-        <h2>Password Reset</h2>
-        <p>You requested a password reset. Click the link below (valid for 30 minutes):</p>
-        <a href="${resetUrl}" style="background:#1a1a1a;color:white;padding:12px 24px;text-decoration:none;border-radius:4px;">Reset Password</a>
-        <p>If you didn't request this, ignore this email.</p>
-      `
+      subject: resetMail.subject,
+      html: resetMail.html
     });
 
     res.json({ success: true, message: 'If that email exists, a reset link has been sent.' });
@@ -310,22 +329,39 @@ const changePassword = async (req, res) => {
 // @route   POST /api/auth/google
 const googleAuth = async (req, res) => {
   try {
-    const { token } = req.body;
+    // const { token } = req.body;
 
-    if (!token) {
-      return res.status(400).json({ success: false, message: 'Google token required' });
+    // if (!token) {
+    //   return res.status(400).json({ success: false, message: 'Google token required' });
+    // }
+
+    // // Fetch user info from Google using the access_token
+    // const userInfoResponse = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+    //   headers: { Authorization: `Bearer ${token}` }
+    // });
+
+    // if (!userInfoResponse.ok) {
+    //   throw new Error('Failed to fetch user info from Google');
+    // }
+
+    // const payload = await userInfoResponse.json();
+    // const { email, name, picture, sub } = payload;
+
+    // if (!email) {
+    //   return res.status(400).json({ success: false, message: 'Could not get email from Google' });
+    // }
+
+    const { credential } = req.body;
+
+    if (!credential) {
+      return res.status(400).json({ success: false, message: 'Google credential required' });
     }
 
-    // Fetch user info from Google using the access_token
-    const userInfoResponse = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
-      headers: { Authorization: `Bearer ${token}` }
+    const ticket = await googleClient.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_CLIENT_ID
     });
-
-    if (!userInfoResponse.ok) {
-      throw new Error('Failed to fetch user info from Google');
-    }
-
-    const payload = await userInfoResponse.json();
+    const payload = ticket.getPayload();
     const { email, name, picture, sub } = payload;
 
     if (!email) {
