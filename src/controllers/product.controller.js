@@ -27,7 +27,7 @@ const getProducts = async (req, res) => {
       isActive: isActive === 'true'
     };
 
-   
+
     if (brand) where.brand = { equals: brand, mode: 'insensitive' };
     if (color) where.colors = { has: color };
     if (size) where.sizes = { has: size };
@@ -64,7 +64,7 @@ const getProducts = async (req, res) => {
         where, orderBy, skip, take: limitNum,
         select: {
           id: true, name: true, price: true, comparePrice: true,
-           brand: true,
+          brand: true,
           colors: true, sizes: true, stock: true, rating: true,
           numReviews: true, images: true, garmentImageUrl: true,
           popularity: true, tags: true, isActive: true, createdAt: true
@@ -133,8 +133,30 @@ const trackView = async (req, res) => {
     });
 
     if (req.user) {
-      await prisma.interaction.create({
-        data: { userId: req.user.id, productId: id, type: 'VIEW', weight: 1 }
+      await prisma.interaction.upsert({
+
+        where: {
+          userId_productId_type: {
+            userId: req.user.id,
+            productId: id,
+            type: "VIEW"
+          }
+        },
+
+        update: {
+          weight: {
+            increment: 1
+          },
+          createdAt: new Date()
+        },
+
+        create: {
+          userId: req.user.id,
+          productId: id,
+          type: "VIEW",
+          weight: 1
+        }
+
       });
     }
 
@@ -191,7 +213,7 @@ const searchProducts = async (req, res) => {
         ]
       },
       take: parseInt(limit),
-      select: { id: true, name: true, price: true, images: true, category: true, rating: true }
+      select: { id: true, name: true, price: true, images: true,  rating: true }
     });
 
     res.json({ success: true, products });
