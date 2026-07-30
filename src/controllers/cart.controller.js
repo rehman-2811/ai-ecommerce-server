@@ -65,10 +65,33 @@ const addToCart = async (req, res) => {
       });
     }
 
-    // Track interaction
-    await prisma.interaction.create({
-      data: { userId: req.user.id, productId, type: 'ADD_TO_CART', weight: 3 }
-    }).catch(() => {});
+   
+    // Track ADD_TO_CART interaction
+    await prisma.interaction.upsert({
+
+      where: {
+        userId_productId_type: {
+          userId: req.user.id,
+          productId,
+          type: "ADD_TO_CART"
+        }
+      },
+
+      update: {
+        weight: {
+          increment: 3
+        },
+        createdAt: new Date()
+      },
+
+      create: {
+        userId: req.user.id,
+        productId,
+        type: "ADD_TO_CART",
+        weight: 3
+      }
+
+    }).catch(() => { });
 
     res.json({ success: true, message: 'Item added to cart', item });
   } catch (error) {
