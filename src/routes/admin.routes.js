@@ -6,6 +6,11 @@ const {
   getAllOrders, updateOrderStatus, getAllUsers, updateUser,
   getVTONAnalytics, getReports
 } = require('../controllers/admin.controller');
+
+const {
+  getContactMessages, updateContactMessageStatus, deleteContactMessage
+} = require('../controllers/contact.controller');
+
 const { protect, adminOnly } = require('../middleware/auth');
 const { upload } = require('../middleware/upload');
 
@@ -37,5 +42,10 @@ router.put('/users/:id', updateUser);
 // Analytics & Reports
 router.get('/vton-analytics', getVTONAnalytics);
 router.get('/reports', getReports);
+
+// Contact Messages
+router.get('/contact-messages', getContactMessages);
+router.put('/contact-messages/:id', updateContactMessageStatus);
+router.delete('/contact-messages/:id', deleteContactMessage);
 
 module.exports = router;

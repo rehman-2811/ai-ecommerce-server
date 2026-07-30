@@ -51,6 +51,12 @@ enum InteractionType {
   PURCHASE
 }
 
+enum ContactStatus {
+  NEW
+  READ
+  REPLIED
+}
+
 model User {
   id           String    @id @default(auto()) @map("_id") @db.ObjectId
   email        String    @unique
@@ -66,12 +72,12 @@ model User {
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
 
-  addresses    Address[]
-  cart         Cart?
-  orders       Order[]
+  addresses     Address[]
+  cart          Cart?
+  orders        Order[]
   tryOnSessions TryOnSession[]
   interactions  Interaction[]
-  reviews      Review[]
+  reviews       Review[]
 }
 
 model Address {
@@ -89,37 +95,42 @@ model Address {
 }
 
 model Product {
-  id             String   @id @default(auto()) @map("_id") @db.ObjectId
-  name           String
-  description    String
-  price          Float
-  comparePrice   Float?
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  description     String
+  price           Float
+  comparePrice    Float?
   // category       String?
   // subCategory    String?
-  brand          String?
-  colors         String[]
-  sizes          String[]
-  material       String?
-  pattern        String?
-  stock          Int      @default(0)
-  rating         Float    @default(0)
-  numReviews     Int      @default(0)
-  isActive       Boolean  @default(true)
-  images         Json
+  brand           String?
+  colors          String[]
+  sizes           String[]
+  material        String?
+  pattern         String?
+  stock           Int      @default(0)
+  rating          Float    @default(0)
+  numReviews      Int      @default(0)
+  isActive        Boolean  @default(true)
+  images          Json
   garmentImageUrl String?
   modelImageUrl   String?
-  imageEmbedding Float[]
-  textEmbedding  Float[]
-  popularity     Int      @default(0)
-  tags           String[]
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  imageEmbedding  Float[]
+  textEmbedding   Float[]
+  popularity      Int      @default(0)
+  tags            String[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
-  cartItems    CartItem[]
-  orderItems   OrderItem[]
+  cartItems     CartItem[]
+  orderItems    OrderItem[]
   tryOnSessions TryOnSession[]
   interactions  Interaction[]
-  reviews      Review[]
+  reviews       Review[]
+
+  @@index([isActive])
+  @@index([popularity])
+  @@index([rating])
+  @@index([createdAt])
 }
 
 model Cart {
@@ -140,6 +151,9 @@ model CartItem {
   size      String?
   color     String?
   price     Float
+
+  @@index([cartId])
+  @@index([productId])
 }
 
 model Order {
@@ -162,6 +176,10 @@ model Order {
   notes           String?
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
 }
 
 model OrderItem {
@@ -176,11 +194,14 @@ model OrderItem {
   size      String?
   color     String?
   image     String?
+
+  @@index([orderId])
+  @@index([productId])
 }
 
 model TryOnSession {
   id             String      @id @default(auto()) @map("_id") @db.ObjectId
-  userId       String      @db.ObjectId
+  userId         String      @db.ObjectId
   user           User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   productId      String      @db.ObjectId
   product        Product     @relation(fields: [productId], references: [id])
@@ -193,6 +214,10 @@ model TryOnSession {
   errorMessage   String?
   createdAt      DateTime    @default(now())
   updatedAt      DateTime    @updatedAt
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
 }
 
 model Interaction {
@@ -206,6 +231,7 @@ model Interaction {
   createdAt DateTime        @default(now())
 
   @@unique([userId, productId, type])
+  @@index([userId, createdAt])
 }
 
 model Review {
@@ -221,4 +247,21 @@ model Review {
   isVerified Boolean  @default(false)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+
+  @@index([productId])
+}
+
+model ContactMessage {
+  id        String        @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String
+  subject   String?
+  message   String
+  status    ContactStatus @default(NEW)
+  userId    String?       @db.ObjectId
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
 }

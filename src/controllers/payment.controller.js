@@ -2,6 +2,8 @@
 const { prisma } = require('../config/database');
 const crypto = require('crypto');
 const { logger } = require('../utils/logger');
+const stripe = require('../config/stripe');
+const { calculateCartTotals, applyCoupon, placeOrderFromCart } = require('../services/order.service');
 
 // @desc    Initiate JazzCash payment
 // @route   POST /api/payments/jazzcash/initiate
@@ -134,41 +136,106 @@ const initiateEasyPaisa = async (req, res) => {
 
 // @desc    Process card payment (mock - integrate with real gateway)
 // @route   POST /api/payments/card/process
-const processCard = async (req, res) => {
+// @desc    Create a Stripe PaymentIntent for card payment
+// @route   POST /api/payments/card/create-intent
+// @desc    Create a Stripe PaymentIntent for card payment — computed directly
+//          from the user's current cart. No order exists yet at this point.
+// @route   POST /api/payments/card/create-intent
+const createCardPaymentIntent = async (req, res) => {
   try {
-    const { orderId, cardNumber, expiryMonth, expiryYear, cvv, cardholderName } = req.body;
+    const { shippingAddress, couponCode, notes } = req.body;
 
-    // Validate card (basic)
-    if (!cardNumber || cardNumber.replace(/\s/g, '').length < 16) {
-      return res.status(400).json({ success: false, message: 'Invalid card number' });
+    if (!shippingAddress?.name || !shippingAddress?.phone || !shippingAddress?.street || !shippingAddress?.city) {
+      return res.status(400).json({ success: false, message: 'Complete shipping address is required' });
     }
 
-    const order = await prisma.order.findFirst({
-      where: { id: orderId, userId: req.user.id }
+    const { subtotal, tax, shippingCost } = await calculateCartTotals(req.user.id);
+    const discount = applyCoupon(couponCode, subtotal);
+    const total = subtotal + tax + shippingCost - discount;
+
+    // Amount must be sent to Stripe in the smallest currency unit (e.g. paisa for PKR)
+    const amountInSmallestUnit = Math.round(total * 100);
+
+    // Stash everything needed to place the order later in the PaymentIntent's
+    // metadata (Stripe is the source of truth here — nothing is written to our
+    // own database until the charge actually succeeds).
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: amountInSmallestUnit,
+      currency: 'pkr',
+      metadata: {
+        userId: req.user.id,
+        shippingAddress: JSON.stringify(shippingAddress),
+        couponCode: couponCode || '',
+        notes: notes || ''
+      },
+      description: `Order payment for ${req.user.email}`,
+      automatic_payment_methods: { enabled: true }
     });
 
-    if (!order) return res.status(404).json({ success: false, message: 'Order not found' });
-
-    // In production, integrate with Stripe/PayFast/etc
-    // Mock successful payment
-    const transactionId = `CARD-${Date.now()}`;
-
-    await prisma.order.update({
-      where: { id: orderId },
-      data: { paymentStatus: 'PAID', status: 'PROCESSING', transactionId }
-    });
-
-    res.json({
-      success: true,
-      message: 'Payment processed successfully',
-      transactionId
-    });
+    res.json({ success: true, clientSecret: paymentIntent.client_secret });
   } catch (error) {
-    logger.error('Card payment error:', error);
-    res.status(500).json({ success: false, message: 'Payment processing failed' });
+    logger.error('Create payment intent error:', error);
+    res.status(error.statusCode || 500).json({ success: false, message: error.message || 'Failed to initiate card payment' });
   }
 };
 
+// @desc    Confirm a card payment after Stripe has processed it client-side.
+//          The order is only ever created here, and only if Stripe confirms
+//          the charge actually succeeded — a declined/failed card never
+//          results in an order, stock deduction, or cleared cart.
+// @route   POST /api/payments/card/confirm
+const confirmCardPayment = async (req, res) => {
+  try {
+    const { paymentIntentId } = req.body;
+    if (!paymentIntentId) {
+      return res.status(400).json({ success: false, message: 'paymentIntentId is required' });
+    }
+
+    // Always re-verify the payment status directly with Stripe — never trust
+    // the client's word alone that a payment "succeeded".
+    const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+
+    if (paymentIntent.metadata?.userId !== req.user.id) {
+      return res.status(403).json({ success: false, message: 'This payment does not belong to your account' });
+    }
+
+    if (paymentIntent.status !== 'succeeded') {
+      return res.status(400).json({
+        success: false,
+        message: `Payment was not completed (status: ${paymentIntent.status}) — no order was placed`
+      });
+    }
+
+    // Guard against double-processing (e.g. duplicate confirm calls) by
+    // checking whether an order already used this transactionId.
+    const existing = await prisma.order.findFirst({ where: { transactionId: paymentIntentId } });
+    if (existing) {
+      return res.json({ success: true, message: 'Payment already confirmed', order: existing });
+    }
+
+    const shippingAddress = JSON.parse(paymentIntent.metadata.shippingAddress);
+    const couponCode = paymentIntent.metadata.couponCode || undefined;
+    const notes = paymentIntent.metadata.notes || undefined;
+
+    const order = await placeOrderFromCart({
+      userId: req.user.id,
+      userEmail: req.user.email,
+      userName: req.user.name,
+      shippingAddress,
+      paymentMethod: 'CARD',
+      couponCode,
+      notes,
+      paymentStatus: 'PAID',
+      status: 'PROCESSING',
+      transactionId: paymentIntent.id
+    });
+
+    res.json({ success: true, message: 'Payment confirmed, order placed', order });
+  } catch (error) {
+    logger.error('Confirm card payment error:', error);
+    res.status(error.statusCode || 500).json({ success: false, message: error.message || 'Failed to confirm payment' });
+  }
+};
 // @desc    Confirm COD order
 // @route   POST /api/payments/cod/confirm
 const confirmCOD = async (req, res) => {
@@ -192,4 +259,4 @@ const confirmCOD = async (req, res) => {
   }
 };
 
-module.exports = { initiateJazzCash, jazzCashReturn, initiateEasyPaisa, processCard, confirmCOD };
+module.exports = { initiateJazzCash, jazzCashReturn, initiateEasyPaisa, createCardPaymentIntent, confirmCardPayment, confirmCOD };

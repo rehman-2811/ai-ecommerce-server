@@ -1,11 +1,12 @@
 // server.js - Main Entry Point
 require('dotenv').config();
-require('dotenv').config();
 
-console.log("=================================");
-console.log("EMAIL_USER =", process.env.EMAIL_USER);
-console.log("EMAIL_PASS =", process.env.EMAIL_PASS ? "Loaded ✅" : "Not Loaded ❌");
-console.log("=================================");
+
+console.log("EMAIL_USER:", process.env.EMAIL_USER);
+console.log(
+  "EMAIL_PASS loaded:",
+  process.env.EMAIL_PASS ? "YES" : "NO"
+);
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -14,6 +15,7 @@ const morgan = require('morgan');
 const { logger } = require('./src/utils/logger');
 const { errorHandler, notFound } = require('./src/middleware/error');
 const { connectRedis } = require('./src/config/redis');
+const compression = require('compression');
 
 // Route imports
 const authRoutes = require('./src/routes/auth.routes');
@@ -25,6 +27,8 @@ const recommendationRoutes = require('./src/routes/recommendation.routes');
 const paymentRoutes = require('./src/routes/payment.routes');
 const adminRoutes = require('./src/routes/admin.routes');
 const uploadRoutes = require('./src/routes/upload.routes');
+const contactRoutes = require('./src/routes/contact.routes');
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -34,6 +38,8 @@ app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" },
   contentSecurityPolicy: false
 }));
+
+app.use(compression());
 
 // CORS
 
@@ -77,6 +83,7 @@ app.use('/api/recommendations', recommendationRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/upload', uploadRoutes);
+app.use('/api/contact', contactRoutes);
 
 // Error handling
 app.use(notFound);
@@ -86,8 +93,8 @@ app.use(errorHandler);
 const startServer = async () => {
   try {
     // Connect to Redis
-    // await connectRedis();
-    // logger.info('Redis connected');
+    await connectRedis();
+    logger.info('Redis connected');
 
     app.listen(PORT, () => {
       logger.info(`Server running on http://localhost:${PORT}`);
