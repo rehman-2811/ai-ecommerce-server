@@ -1488,3 +1488,25 @@
 {"level":"info","message":"Redis connected","timestamp":"2026-07-30 19:11:28"}
 {"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-30 19:11:28"}
 {"level":"info","message":"Environment: development","timestamp":"2026-07-30 19:11:28"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-30 19:28:28"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-30 19:28:29"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-30 19:28:30"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-30 19:28:30"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-30 19:33:39"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-30 19:33:40"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-30 19:33:40"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-30 19:33:40"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-30 19:37:24"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-30 19:37:25"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-30 19:37:25"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-30 19:37:28"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-30 19:40:25"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-30 19:40:25"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-30 19:40:25"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-30 19:40:25"}
+{"level":"info","message":"Email sent undefined","timestamp":"2026-07-30 19:43:56"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-07-30 19:46:13"}
+{"level":"info","message":"Redis connected","timestamp":"2026-07-30 19:46:14"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-30 19:46:14"}
+{"level":"info","message":"Environment: development","timestamp":"2026-07-30 19:46:14"}
+{"level":"info","message":"Email sent cdcff0e8-305b-4b60-beb3-ea0975320040","timestamp":"2026-07-30 19:46:46"}

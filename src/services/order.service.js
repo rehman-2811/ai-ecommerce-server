@@ -97,8 +97,28 @@ const placeOrderFromCart = async ({ userId, userEmail, userName, shippingAddress
             where: { id: item.productId },
             data: { stock: { decrement: item.quantity }, popularity: { increment: 5 } }
         });
-        await prisma.interaction.create({
-            data: { userId, productId: item.productId, type: 'PURCHASE', weight: 10 }
+        await prisma.interaction.upsert({
+            where: {
+                userId_productId_type: {
+                    userId,
+                    productId: item.productId,
+                    type: 'PURCHASE'
+                }
+            },
+
+            update: {
+                weight: {
+                    increment: 10
+                },
+                createdAt: new Date()
+            },
+
+            create: {
+                userId,
+                productId: item.productId,
+                type: 'PURCHASE',
+                weight: 10
+            }
         }).catch(() => { });
     }
 
