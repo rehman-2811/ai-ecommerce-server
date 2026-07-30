@@ -1,12 +1,6 @@
 // server.js - Main Entry Point
 require('dotenv').config();
 
-
-console.log("EMAIL_USER:", process.env.EMAIL_USER);
-console.log(
-  "EMAIL_PASS loaded:",
-  process.env.EMAIL_PASS ? "YES" : "NO"
-);
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
