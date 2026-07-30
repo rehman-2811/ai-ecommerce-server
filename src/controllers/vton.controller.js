@@ -51,9 +51,27 @@ const submitTryOn = async (req, res) => {
     processTryOn(session.id, userImageUrl, product.garmentImageUrl);
 
     // Track interaction
-    await prisma.interaction.create({
-      data: { userId: req.user.id, productId, type: 'TRY_ON', weight: 5 }
-    }).catch(() => {});
+    await prisma.interaction.upsert({
+      where: {
+        userId_productId_type: {
+          userId: req.user.id,
+          productId,
+          type: 'TRY_ON'
+        }
+      },
+      update: {
+        weight: {
+          increment: 5
+        },
+        createdAt: new Date()
+      },
+      create: {
+        userId: req.user.id,
+        productId,
+        type: 'TRY_ON',
+        weight: 5
+      }
+    }).catch(() => { });
 
     res.json({
       success: true,
@@ -75,7 +93,7 @@ const processTryOn = async (sessionId, userImageUrl, garmentImageUrl) => {
   while (retries < 3) {
     try {
       const result = await fashnService.submitTryOn(userImageUrl, garmentImageUrl);
-      
+
       const processingTime = Math.round((Date.now() - startTime) / 1000);
 
       await prisma.tryOnSession.update({
@@ -169,9 +187,27 @@ const submitFeedback = async (req, res) => {
 
     // If liked, create a LIKE interaction for recommendations
     if (liked) {
-      await prisma.interaction.create({
-        data: { userId: req.user.id, productId: session.productId, type: 'LIKE', weight: 7 }
-      }).catch(() => {});
+      await prisma.interaction.upsert({
+        where: {
+          userId_productId_type: {
+            userId: req.user.id,
+            productId: session.productId,
+            type: 'LIKE'
+          }
+        },
+        update: {
+          weight: {
+            increment: 7
+          },
+          createdAt: new Date()
+        },
+        create: {
+          userId: req.user.id,
+          productId: session.productId,
+          type: 'LIKE',
+          weight: 7
+        }
+      }).catch(() => { });
 
       // Increment product popularity
       await prisma.product.update({
@@ -197,7 +233,7 @@ const getHistory = async (req, res) => {
       prisma.tryOnSession.findMany({
         where: { userId: req.user.id },
         include: {
-          product: { select: { id: true, name: true, price: true, images: true,  } }
+          product: { select: { id: true, name: true, price: true, images: true, } }
         },
         orderBy: { createdAt: 'desc' },
         skip, take: parseInt(limit)
