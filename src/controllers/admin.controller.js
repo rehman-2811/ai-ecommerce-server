@@ -115,7 +115,7 @@ const getAllProducts = async (req, res) => {
 const createProduct = async (req, res) => {
   try {
     const {
-      name, description, price, comparePrice, 
+      name, description, price, comparePrice,
       brand, colors, sizes, material, pattern, stock, tags
     } = req.body;
 
@@ -178,7 +178,8 @@ const updateProduct = async (req, res) => {
     if (!existing) return res.status(404).json({ success: false, message: 'Product not found' });
 
     let updateData = {
-      name, description, brand, material, pattern, isActive: isActive === 'true',
+      name, description, brand, material, pattern,
+      isActive: isActive !== undefined ? (isActive === true || isActive === 'true') : existing.isActive,
       price: price ? parseFloat(price) : existing.price,
       comparePrice: comparePrice ? parseFloat(comparePrice) : existing.comparePrice,
       stock: stock ? parseInt(stock) : existing.stock,
@@ -208,6 +209,7 @@ const updateProduct = async (req, res) => {
 
     await delCachePattern('products:*');
     await delCachePattern(`product:${id}`);
+    await delCachePattern('recommendations:*');
 
     res.json({ success: true, product });
   } catch (error) {
@@ -219,13 +221,53 @@ const updateProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    await prisma.product.update({ where: { id }, data: { isActive: false } });
+
+    const existing = await prisma.product.findUnique({ where: { id } });
+    if (!existing) {
+      return res.status(404).json({ success: false, message: 'Product not found' });
+    }
+
+    // Order history must be preserved for accounting/records — a product
+    // that has been ordered before can't be hard-deleted without breaking
+    // that history, so we deactivate it instead.
+    const orderCount = await prisma.orderItem.count({ where: { productId: id } });
+    if (orderCount > 0) {
+      await prisma.product.update({ where: { id }, data: { isActive: false } });
+      await delCachePattern('products:*');
+      await delCachePattern(`product:${id}`);
+      await delCachePattern('recommendations:*');
+      return res.json({
+        success: true,
+        message: `This product has ${orderCount} past order(s) attached, so it was hidden (deactivated) instead of permanently deleted to keep order history intact.`,
+        hardDeleted: false
+      });
+    }
+
+    // No order history — safe to fully delete.
+    try {
+      for (const img of existing.images || []) {
+        if (img.publicId) await deleteImage(img.publicId);
+      }
+    } catch (imgErr) {
+      logger.error('Failed to delete product images from Cloudinary:', imgErr.message);
+    }
+
+    await Promise.all([
+      prisma.cartItem.deleteMany({ where: { productId: id } }),
+      prisma.interaction.deleteMany({ where: { productId: id } }),
+      prisma.review.deleteMany({ where: { productId: id } }),
+      prisma.tryOnSession.deleteMany({ where: { productId: id } })
+    ]);
+
+    await prisma.product.delete({ where: { id } });
 
     await delCachePattern('products:*');
     await delCachePattern(`product:${id}`);
+    await delCachePattern('recommendations:*');
 
-    res.json({ success: true, message: 'Product deactivated' });
+    res.json({ success: true, message: 'Product deleted permanently', hardDeleted: true });
   } catch (error) {
+    logger.error('Delete product error:', error);
     res.status(500).json({ success: false, message: 'Failed to delete product' });
   }
 };
@@ -366,7 +408,7 @@ const getVTONAnalytics = async (req, res) => {
     const productIds = mostTriedProducts.map(p => p.productId);
     const products = await prisma.product.findMany({
       where: { id: { in: productIds } },
-      select: { id: true, name: true, images: true,  }
+      select: { id: true, name: true, images: true, }
     });
 
     const mostTriedWithDetails = mostTriedProducts.map(stat => ({

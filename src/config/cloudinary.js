@@ -1,6 +1,7 @@
 // src/config/cloudinary.js
 const cloudinary = require('cloudinary').v2;
 const { logger } = require('../utils/logger');
+const axios = require('axios');
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -22,6 +23,27 @@ const uploadImage = async (filePath, folder = 'products') => {
   } catch (error) {
     logger.error('Cloudinary upload error:', error);
     throw error;
+  }
+};
+
+// new function
+
+
+const uploadFromUrl = async (remoteUrl, folder = 'tryon/results') => {
+  if (!remoteUrl) {
+    throw new Error('No image URL provided for Cloudinary upload');
+  }
+  try {
+    const response = await axios.get(remoteUrl, {
+      responseType: 'arraybuffer',
+      timeout: 30000
+    });
+    const buffer = Buffer.from(response.data);
+    const mimetype = response.headers['content-type'] || 'image/png';
+    return await uploadBuffer(buffer, mimetype, folder);
+  } catch (error) {
+    logger.error(`Cloudinary uploadFromUrl error for ${remoteUrl}:`, error.message);
+    throw new Error(`Failed to persist generated image to Cloudinary: ${error.message}`);
   }
 };
 
@@ -54,4 +76,4 @@ const deleteImage = async (publicId) => {
   }
 };
 
-module.exports = { cloudinary, uploadImage, uploadBuffer, deleteImage };
+module.exports = { cloudinary, uploadImage, uploadBuffer, uploadFromUrl ,deleteImage };

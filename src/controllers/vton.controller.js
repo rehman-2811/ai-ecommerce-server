@@ -1,7 +1,7 @@
 // src/controllers/vton.controller.js
 const { prisma } = require('../config/database');
 const { fashnService } = require('../services/fashn.service');
-const { uploadBuffer } = require('../config/cloudinary');
+const { uploadBuffer, uploadFromUrl } = require('../config/cloudinary');
 const { logger } = require('../utils/logger');
 
 // @desc    Submit try-on job
@@ -94,15 +94,27 @@ const processTryOn = async (sessionId, userImageUrl, garmentImageUrl) => {
     try {
       const result = await fashnService.submitTryOn(userImageUrl, garmentImageUrl);
 
+      // FASHN AI ka URL temporary hai (403 expire ho jata hai) — 
+      // isliye download karke Cloudinary pe permanent upload karo
+      let permanentResultUrl;
+      try {
+        const cloudinaryUpload = await uploadFromUrl(result.resultImageUrl, 'tryon/results');
+        permanentResultUrl = cloudinaryUpload.secure_url;
+      } catch (persistError) {
+        logger.error(`Failed to persist result image for session ${sessionId} to Cloudinary:`, persistError.message);
+        throw persistError; // retry loop ko trigger karega
+      }
+
       const processingTime = Math.round((Date.now() - startTime) / 1000);
 
       await prisma.tryOnSession.update({
         where: { id: sessionId },
         data: {
-          resultImageUrl: result.resultImageUrl,
+          resultImageUrl: permanentResultUrl,
           jobId: result.jobId,
           status: 'COMPLETED',
-          processingTime
+          processingTime,
+          errorMessage: null
         }
       });
 
@@ -130,7 +142,7 @@ const getStatus = async (req, res) => {
     const session = await prisma.tryOnSession.findFirst({
       where: { id: req.params.sessionId, userId: req.user.id },
       include: {
-        product: { select: { name: true, images: true } }
+        product: { select: { name: true, images: true,garmentImageUrl: true } }
       }
     });
 
@@ -151,7 +163,7 @@ const getResult = async (req, res) => {
     const session = await prisma.tryOnSession.findFirst({
       where: { id: req.params.sessionId, userId: req.user.id },
       include: {
-        product: { select: { id: true, name: true, price: true, images: true, category: true } }
+        product: { select: { id: true, name: true, price: true, images: true, category: true,garmentImageUrl: true } }
       }
     });
 
@@ -233,7 +245,7 @@ const getHistory = async (req, res) => {
       prisma.tryOnSession.findMany({
         where: { userId: req.user.id },
         include: {
-          product: { select: { id: true, name: true, price: true, images: true, } }
+          product: { select: { id: true, name: true, price: true, images: true,garmentImageUrl: true } }
         },
         orderBy: { createdAt: 'desc' },
         skip, take: parseInt(limit)
@@ -247,4 +259,33 @@ const getHistory = async (req, res) => {
   }
 };
 
-module.exports = { submitTryOn, getStatus, getResult, submitFeedback, getHistory };
+// Yeh naya function add karo (getHistory function ke baad):
+const retryTryOn = async (req, res) => {
+  try {
+    const session = await prisma.tryOnSession.findFirst({
+      where: { id: req.params.sessionId, userId: req.user.id },
+      include: { product: { select: { garmentImageUrl: true } } }
+    });
+
+    if (!session) {
+      return res.status(404).json({ success: false, message: 'Session not found' });
+    }
+    if (!session.product?.garmentImageUrl) {
+      return res.status(400).json({ success: false, message: 'Product no longer supports virtual try-on' });
+    }
+
+    await prisma.tryOnSession.update({
+      where: { id: session.id },
+      data: { status: 'PROCESSING', errorMessage: null }
+    });
+
+    processTryOn(session.id, session.userImageUrl, session.product.garmentImageUrl);
+
+    res.json({ success: true, message: 'Retry started', sessionId: session.id, status: 'PROCESSING' });
+  } catch (error) {
+    logger.error('VTON retry error:', error);
+    res.status(500).json({ success: false, message: 'Failed to retry try-on' });
+  }
+};
+
+module.exports = { submitTryOn, getStatus, getResult, submitFeedback, getHistory, retryTryOn };
