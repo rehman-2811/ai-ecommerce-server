@@ -1,7 +1,7 @@
 // src/routes/vton.routes.js
 const express = require('express');
 const router = express.Router();
-const { submitTryOn, getStatus, getResult, submitFeedback, getHistory } = require('../controllers/vton.controller');
+const { submitTryOn, getStatus, getResult, submitFeedback, getHistory, retryTryOn } = require('../controllers/vton.controller');
 const { protect } = require('../middleware/auth');
 const { upload } = require('../middleware/upload');
 const { vtonLimiter } = require('../middleware/rateLimit');
@@ -12,5 +12,6 @@ router.get('/status/:sessionId', getStatus);
 router.get('/result/:sessionId', getResult);
 router.post('/feedback/:sessionId', submitFeedback);
 router.get('/history', getHistory);
+router.post('/retry/:sessionId', vtonLimiter, retryTryOn);
 
 module.exports = router;

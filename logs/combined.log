@@ -1510,3 +1510,91 @@
 {"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-07-30 19:46:14"}
 {"level":"info","message":"Environment: development","timestamp":"2026-07-30 19:46:14"}
 {"level":"info","message":"Email sent cdcff0e8-305b-4b60-beb3-ea0975320040","timestamp":"2026-07-30 19:46:46"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-08-06 10:29:52"}
+{"level":"info","message":"Redis connected","timestamp":"2026-08-06 10:29:52"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-08-06 10:29:53"}
+{"level":"info","message":"Environment: development","timestamp":"2026-08-06 10:29:53"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-08-06 10:51:21"}
+{"level":"info","message":"Redis connected","timestamp":"2026-08-06 10:51:25"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-08-06 10:51:25"}
+{"level":"info","message":"Environment: development","timestamp":"2026-08-06 10:51:25"}
+{"level":"info","message":"Submitting try-on request to FASHN AI...","timestamp":"2026-08-06 11:05:44"}
+{"level":"info","message":"Prediction created: 5811e75a-36db-49f0-a36b-4fd16a8622b8","timestamp":"2026-08-06 11:05:51"}
+{"level":"info","message":"Prediction 5811e75a-36db-49f0-a36b-4fd16a8622b8: processing (1/30)","timestamp":"2026-08-06 11:05:57"}
+{"level":"info","message":"Prediction 5811e75a-36db-49f0-a36b-4fd16a8622b8: processing (2/30)","timestamp":"2026-08-06 11:06:04"}
+{"level":"info","message":"Prediction 5811e75a-36db-49f0-a36b-4fd16a8622b8 completed successfully.","timestamp":"2026-08-06 11:06:10"}
+{"level":"info","message":"Try-on 6a742438d9cb02bea071d6a0 completed in 27s","timestamp":"2026-08-06 11:06:11"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-08-06 11:33:10"}
+{"level":"info","message":"Redis connected","timestamp":"2026-08-06 11:33:11"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-08-06 11:33:11"}
+{"level":"info","message":"Environment: development","timestamp":"2026-08-06 11:33:11"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-08-06 11:33:27"}
+{"level":"info","message":"Redis connected","timestamp":"2026-08-06 11:33:28"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-08-06 11:33:28"}
+{"level":"info","message":"Environment: development","timestamp":"2026-08-06 11:33:28"}
+{"level":"info","message":"Redis connected","timestamp":"2026-08-06 11:34:12"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-08-06 11:34:12"}
+{"level":"info","message":"Environment: development","timestamp":"2026-08-06 11:34:12"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-08-06 11:34:17"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-08-06 11:39:21"}
+{"level":"info","message":"Redis connected","timestamp":"2026-08-06 11:39:22"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-08-06 11:39:22"}
+{"level":"info","message":"Environment: development","timestamp":"2026-08-06 11:39:22"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-08-06 11:41:23"}
+{"level":"info","message":"Redis connected","timestamp":"2026-08-06 11:41:23"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-08-06 11:41:23"}
+{"level":"info","message":"Environment: development","timestamp":"2026-08-06 11:41:23"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-08-06 11:42:20"}
+{"level":"info","message":"Redis connected","timestamp":"2026-08-06 11:42:20"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-08-06 11:42:20"}
+{"level":"info","message":"Environment: development","timestamp":"2026-08-06 11:42:20"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-08-06 11:42:37"}
+{"level":"info","message":"Redis connected","timestamp":"2026-08-06 11:42:38"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-08-06 11:42:38"}
+{"level":"info","message":"Environment: development","timestamp":"2026-08-06 11:42:38"}
+{"level":"info","message":"Redis connected","timestamp":"2026-08-06 11:42:48"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-08-06 11:42:48"}
+{"level":"info","message":"Environment: development","timestamp":"2026-08-06 11:42:48"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-08-06 11:42:48"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-08-06 11:43:15"}
+{"level":"info","message":"Redis connected","timestamp":"2026-08-06 11:43:15"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-08-06 11:43:15"}
+{"level":"info","message":"Environment: development","timestamp":"2026-08-06 11:43:15"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-08-06 11:43:25"}
+{"level":"info","message":"Redis connected","timestamp":"2026-08-06 11:43:26"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-08-06 11:43:26"}
+{"level":"info","message":"Environment: development","timestamp":"2026-08-06 11:43:26"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-08-06 11:44:26"}
+{"level":"info","message":"Redis connected","timestamp":"2026-08-06 11:44:27"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-08-06 11:44:27"}
+{"level":"info","message":"Environment: development","timestamp":"2026-08-06 11:44:27"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-08-06 11:44:41"}
+{"level":"info","message":"Redis connected","timestamp":"2026-08-06 11:44:42"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-08-06 11:44:42"}
+{"level":"info","message":"Environment: development","timestamp":"2026-08-06 11:44:42"}
+{"level":"info","message":"Submitting try-on request to FASHN AI...","timestamp":"2026-08-06 11:52:53"}
+{"level":"info","message":"Prediction created: d45f7fb3-52cb-421f-91de-d3d80df26d7e","timestamp":"2026-08-06 11:52:59"}
+{"level":"info","message":"Prediction d45f7fb3-52cb-421f-91de-d3d80df26d7e: processing (1/30)","timestamp":"2026-08-06 11:53:05"}
+{"level":"info","message":"Prediction d45f7fb3-52cb-421f-91de-d3d80df26d7e completed successfully.","timestamp":"2026-08-06 11:53:12"}
+{"level":"info","message":"Try-on 6a6b8995a44b4832995dbff0 completed in 30s","timestamp":"2026-08-06 11:53:24"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-08-06 12:40:45"}
+{"level":"info","message":"Redis connected","timestamp":"2026-08-06 12:40:46"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-08-06 12:40:46"}
+{"level":"info","message":"Environment: development","timestamp":"2026-08-06 12:40:46"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-08-06 12:40:54"}
+{"level":"info","message":"Redis connected","timestamp":"2026-08-06 12:40:54"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-08-06 12:40:54"}
+{"level":"info","message":"Environment: development","timestamp":"2026-08-06 12:40:54"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-08-06 12:41:44"}
+{"level":"info","message":"Redis connected","timestamp":"2026-08-06 12:41:45"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-08-06 12:41:45"}
+{"level":"info","message":"Environment: development","timestamp":"2026-08-06 12:41:45"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-08-06 12:42:31"}
+{"level":"info","message":"Redis connected","timestamp":"2026-08-06 12:42:32"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-08-06 12:42:32"}
+{"level":"info","message":"Environment: development","timestamp":"2026-08-06 12:42:32"}
+{"clientVersion":"6.19.3","code":"P2014","level":"error","message":"Delete product error: \nInvalid `prisma.product.delete()` invocation:\n\n\nThe change you are trying to make would violate the required relation 'OrderItemToProduct' between the `OrderItem` and `Product` models.","meta":{"modelName":"Product","model_a_name":"OrderItem","model_b_name":"Product","relation_name":"OrderItemToProduct"},"name":"PrismaClientKnownRequestError","stack":"PrismaClientKnownRequestError: \nInvalid `prisma.product.delete()` invocation:\n\n\nThe change you are trying to make would violate the required relation 'OrderItemToProduct' between the `OrderItem` and `Product` models.\n    at ei.handleRequestError (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\@prisma\\client\\runtime\\library.js:121:7268)\n    at ei.handleAndLogRequestError (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\@prisma\\client\\runtime\\library.js:121:6593)\n    at ei.request (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\@prisma\\client\\runtime\\library.js:121:6300)\n    at async a (D:\\FinalProject\\ai-ecommerce-server\\node_modules\\@prisma\\client\\runtime\\library.js:130:9551)\n    at async deleteProduct (D:\\FinalProject\\ai-ecommerce-server\\src\\controllers\\admin.controller.js:248:5)","timestamp":"2026-08-06 12:43:48"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-08-06 12:48:46"}
+{"level":"info","message":"Redis connected","timestamp":"2026-08-06 12:48:47"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-08-06 12:48:47"}
+{"level":"info","message":"Environment: development","timestamp":"2026-08-06 12:48:47"}
