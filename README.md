@@ -5,7 +5,7 @@
 ```bash
 cd backend
 npm install
-cp .env.example .env
+create .env file
 # Fill in your .env values
 npx prisma generate
 npx prisma db push
@@ -82,9 +82,3 @@ npm start
 | GET | /api/admin/vton-analytics | VTON stats |
 | GET | /api/admin/reports | Sales reports |
 
-## Google Colab VTON Setup
-
-1. Open `colab/VITON_HD_Server.ipynb` in Google Colab
-2. Run all cells to start the server
-3. Copy the ngrok URL
-4. Add to `.env`: `COLAB_VTON_URL=https://xxxx.ngrok.io`
