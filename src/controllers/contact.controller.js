@@ -1,7 +1,7 @@
 // src/controllers/contact.controller.js
 const { prisma } = require('../config/database');
 const { sendEmail } = require('../services/email.service');
-const { contactNotificationEmailTemplate } = require('../utils/emailTemplates');
+const { contactNotificationEmailTemplate,contactReplyEmailTemplate } = require('../utils/emailTemplates');
 const { logger } = require('../utils/logger');
 
 // @desc    Submit contact form (public)
@@ -125,6 +125,51 @@ const updateContactMessageStatus = async (req, res) => {
   }
 };
 
+
+
+const getUnreadMessageCount = async (req, res) => {
+  try {
+    const count = await prisma.contactMessage.count({ where: { status: 'NEW' } });
+    res.json({ success: true, count });
+  } catch (error) {
+    logger.error('Get unread message count error:', error);
+    res.status(500).json({ success: false, message: 'Failed to fetch unread count' });
+  }
+};
+
+const replyToContactMessage = async (req, res) => {
+  try {
+    const { reply } = req.body;
+    if (!reply || !reply.trim()) {
+      return res.status(400).json({ success: false, message: 'Reply message cannot be empty' });
+    }
+
+    const existing = await prisma.contactMessage.findUnique({ where: { id: req.params.id } });
+    if (!existing) {
+      return res.status(404).json({ success: false, message: 'Message not found' });
+    }
+
+    const trimmedReply = reply.trim();
+
+    const message = await prisma.contactMessage.update({
+      where: { id: req.params.id },
+      data: { adminReply: trimmedReply, repliedAt: new Date(), status: 'REPLIED' }
+    });
+
+    const replyMail = contactReplyEmailTemplate(existing, trimmedReply);
+    const emailResult = await sendEmail({
+      to: existing.email,
+      subject: replyMail.subject,
+      html: replyMail.html
+    });
+
+    res.json({ success: true, message, emailSent: !!emailResult });
+  } catch (error) {
+    logger.error('Reply to contact message error:', error);
+    res.status(500).json({ success: false, message: 'Failed to send reply' });
+  }
+};
+
 // @desc    Delete a contact message (admin)
 // @route   DELETE /api/admin/contact-messages/:id
 const deleteContactMessage = async (req, res) => {
@@ -141,5 +186,7 @@ module.exports = {
   submitContactMessage,
   getContactMessages,
   updateContactMessageStatus,
-  deleteContactMessage
+  deleteContactMessage,
+   getUnreadMessageCount,  
+  replyToContactMessage
 };
