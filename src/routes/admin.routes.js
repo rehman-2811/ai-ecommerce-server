@@ -8,7 +8,7 @@ const {
 } = require('../controllers/admin.controller');
 
 const {
-  getContactMessages, updateContactMessageStatus, deleteContactMessage
+  getContactMessages, updateContactMessageStatus, deleteContactMessage,getUnreadMessageCount, replyToContactMessage
 } = require('../controllers/contact.controller');
 
 const { protect, adminOnly } = require('../middleware/auth');
@@ -44,7 +44,9 @@ router.get('/vton-analytics', getVTONAnalytics);
 router.get('/reports', getReports);
 
 // Contact Messages
+router.get('/contact-messages/unread-count', getUnreadMessageCount);  
 router.get('/contact-messages', getContactMessages);
+router.post('/contact-messages/:id/reply', replyToContactMessage);     
 router.put('/contact-messages/:id', updateContactMessageStatus);
 router.delete('/contact-messages/:id', deleteContactMessage);
 

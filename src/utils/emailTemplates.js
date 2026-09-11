@@ -5,19 +5,19 @@
 // used across the Aqua Fits storefront.
 
 const BRAND = {
-    name: 'Aqua Fits',
-    primary: '#8B4513',      // saddle brown
-    accent: '#D2691E',       // chocolate/orange
-    gradient: 'linear-gradient(135deg, #8B4513, #D2691E)',
-    bg: '#f9f6f3',           // cream page background
-    card: '#ffffff',
-    text: '#2b2b2b',
-    muted: '#7a7a7a',
-    border: '#eee2d8',
-    success: '#1e7e34',
-    successBg: '#e9f7ef',
-    danger: '#c0392b',
-    dangerBg: '#fdecea'
+  name: 'Aqua Fits',
+  primary: '#8B4513',      // saddle brown
+  accent: '#D2691E',       // chocolate/orange
+  gradient: 'linear-gradient(135deg, #8B4513, #D2691E)',
+  bg: '#f9f6f3',           // cream page background
+  card: '#ffffff',
+  text: '#2b2b2b',
+  muted: '#7a7a7a',
+  border: '#eee2d8',
+  success: '#1e7e34',
+  successBg: '#e9f7ef',
+  danger: '#c0392b',
+  dangerBg: '#fdecea'
 };
 
 const clientUrl = () => process.env.CLIENT_URL || 'http://localhost:5173';
@@ -94,25 +94,25 @@ const button = (href, label) => `
 `;
 
 const statusBadge = (label, kind = 'success') => {
-    const bg = kind === 'success' ? BRAND.successBg : BRAND.dangerBg;
-    const color = kind === 'success' ? BRAND.success : BRAND.danger;
-    return `<span style="display:inline-block;background:${bg};color:${color};font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;letter-spacing:0.3px;">${label}</span>`;
+  const bg = kind === 'success' ? BRAND.successBg : BRAND.dangerBg;
+  const color = kind === 'success' ? BRAND.success : BRAND.danger;
+  return `<span style="display:inline-block;background:${bg};color:${color};font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;letter-spacing:0.3px;">${label}</span>`;
 };
 const PAYMENT_METHOD_LABELS = {
-    COD: '💵 Cash on Delivery',
-    CARD: '💳 Credit / Debit Card',
-    JAZZCASH: '📱 JazzCash',
-    EASYPAISA: '📲 EasyPaisa'
+  COD: '💵 Cash on Delivery',
+  CARD: '💳 Credit / Debit Card',
+  JAZZCASH: '📱 JazzCash',
+  EASYPAISA: '📲 EasyPaisa'
 };
 const paymentMethodLabel = (method) => PAYMENT_METHOD_LABELS[method] || method || 'N/A';
 
 // ---------------------------------------------------------------------------
 
 const welcomeEmailTemplate = (user) => ({
-    subject: `Welcome to ${BRAND.name}, ${user.name.split(' ')[0]}! 🎉`,
-    html: emailLayout({
-        preheader: `Your ${BRAND.name} account is ready — start exploring.`,
-        bodyHtml: `
+  subject: `Welcome to ${BRAND.name}, ${user.name.split(' ')[0]}! 🎉`,
+  html: emailLayout({
+    preheader: `Your ${BRAND.name} account is ready — start exploring.`,
+    bodyHtml: `
       <h2 style="margin:0 0 12px;color:${BRAND.text};font-size:22px;">Welcome aboard, ${user.name.split(' ')[0]}! 👋</h2>
       <p style="margin:0 0 16px;color:${BRAND.muted};font-size:14.5px;line-height:1.7;">
         Your account has been created successfully. You're all set to explore our collection,
@@ -137,14 +137,14 @@ const welcomeEmailTemplate = (user) => ({
         If you didn't create this account, you can safely ignore this email.
       </p>
     `
-    })
+  })
 });
 
 const passwordResetEmailTemplate = (user, resetUrl) => ({
-    subject: `Reset your ${BRAND.name} password`,
-    html: emailLayout({
-        preheader: 'This password reset link expires in 30 minutes.',
-        bodyHtml: `
+  subject: `Reset your ${BRAND.name} password`,
+  html: emailLayout({
+    preheader: 'This password reset link expires in 30 minutes.',
+    bodyHtml: `
       <h2 style="margin:0 0 12px;color:${BRAND.text};font-size:22px;">Password Reset Request 🔒</h2>
       <p style="margin:0 0 8px;color:${BRAND.muted};font-size:14.5px;line-height:1.7;">
         Hi ${user.name.split(' ')[0]}, we received a request to reset your ${BRAND.name} password.
@@ -168,11 +168,11 @@ const passwordResetEmailTemplate = (user, resetUrl) => ({
         Didn't request this? No action is needed — your password will remain unchanged.
       </p>
     `
-    })
+  })
 });
 
 const orderConfirmationEmailTemplate = (user, order) => {
-    const itemsHtml = order.items.map((item, i) => `
+  const itemsHtml = order.items.map((item, i) => `
     <tr style="background:${i % 2 === 0 ? '#ffffff' : '#fbf8f5'};">
       <td style="padding:12px 10px;border-bottom:1px solid ${BRAND.border};">
         <p style="margin:0;color:${BRAND.text};font-size:13.5px;font-weight:600;">${item.name}</p>
@@ -185,13 +185,13 @@ const orderConfirmationEmailTemplate = (user, order) => {
     </tr>
   `).join('');
 
-    const addr = order.shippingAddress || {};
+  const addr = order.shippingAddress || {};
 
-    return {
-        subject: `Order Confirmed #${order.orderNumber} — ${BRAND.name}`,
-        html: emailLayout({
-            preheader: `Your order #${order.orderNumber} is confirmed. Total: PKR ${order.total.toLocaleString()}`,
-            bodyHtml: `
+  return {
+    subject: `Order Confirmed #${order.orderNumber} — ${BRAND.name}`,
+    html: emailLayout({
+      preheader: `Your order #${order.orderNumber} is confirmed. Total: PKR ${order.total.toLocaleString()}`,
+      bodyHtml: `
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
             <td>
@@ -269,15 +269,15 @@ const orderConfirmationEmailTemplate = (user, order) => {
           We'll email you again once your order ships 
         </p>
       `
-        })
-    };
+    })
+  };
 };
 
 const contactNotificationEmailTemplate = (contactMessage) => ({
-    subject: `New Contact Message: ${contactMessage.subject || 'General Inquiry'}`,
-    html: emailLayout({
-        preheader: `New message from ${contactMessage.name}`,
-        bodyHtml: `
+  subject: `New Contact Message: ${contactMessage.subject || 'General Inquiry'}`,
+  html: emailLayout({
+    preheader: `New message from ${contactMessage.name}`,
+    bodyHtml: `
       <h2 style="margin:0 0 16px;color:${BRAND.text};font-size:20px;">📩 New Contact Form Submission</h2>
 
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BRAND.border};border-radius:10px;overflow:hidden;">
@@ -306,12 +306,43 @@ const contactNotificationEmailTemplate = (contactMessage) => ({
 
       ${button(`mailto:${contactMessage.email}`, 'Reply to Customer')}
     `
-    })
+  })
+});
+const contactReplyEmailTemplate = (contactMessage, replyText) => ({
+  subject: `Re: ${contactMessage.subject || 'Your message to ' + BRAND.name}`,
+  html: emailLayout({
+    preheader: `${BRAND.name} replied to your message`,
+    bodyHtml: `
+      <h2 style="margin:0 0 12px;color:${BRAND.text};font-size:20px;">Hi ${contactMessage.name.split(' ')[0]}, we've replied 💬</h2>
+      <p style="margin:0 0 16px;color:${BRAND.muted};font-size:14.5px;line-height:1.7;">
+        Thanks for reaching out to ${BRAND.name}. Here's our response to your message:
+      </p>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${BRAND.bg};border-radius:10px;margin-bottom:18px;">
+        <tr>
+          <td style="padding:16px 18px;border-left:4px solid ${BRAND.primary};">
+            <p style="margin:0;color:${BRAND.text};font-size:14px;line-height:1.7;white-space:pre-wrap;">${replyText}</p>
+          </td>
+        </tr>
+      </table>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BRAND.border};border-radius:10px;">
+        <tr>
+          <td style="padding:14px 18px;">
+            <p style="margin:0 0 4px;color:${BRAND.muted};font-size:11.5px;text-transform:uppercase;font-weight:700;">Your original message</p>
+            <p style="margin:0;color:${BRAND.muted};font-size:13px;line-height:1.6;white-space:pre-wrap;">${contactMessage.message}</p>
+          </td>
+        </tr>
+      </table>
+      <p style="margin:20px 0 0;color:${BRAND.muted};font-size:12.5px;">
+        Need anything else? Just reply to this email or send us a new message anytime.
+      </p>
+    `
+  })
 });
 
 module.exports = {
-    welcomeEmailTemplate,
-    passwordResetEmailTemplate,
-    orderConfirmationEmailTemplate,
-    contactNotificationEmailTemplate
+  welcomeEmailTemplate,
+  passwordResetEmailTemplate,
+  orderConfirmationEmailTemplate,
+  contactNotificationEmailTemplate,
+  contactReplyEmailTemplate
 };
