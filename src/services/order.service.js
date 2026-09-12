@@ -10,11 +10,6 @@ const generateOrderNumber = () => {
     return `ORD-${timestamp}-${random}`;
 };
 
-/**
- * Calculates totals for a user's current cart, applying the same shipping/coupon
- * rules used at checkout. Throws an Error with a user-facing message on failure
- * (empty cart, insufficient stock).
- */
 const calculateCartTotals = async (userId) => {
     const cart = await prisma.cart.findUnique({
         where: { userId },
@@ -39,7 +34,6 @@ const calculateCartTotals = async (userId) => {
     const tax = subtotal * 0.0;
     const shippingCost = subtotal > 2000 ? 0 : 150;
     let discount = 0;
-    // (couponCode is applied by the caller since it isn't stored on the cart)
 
     return { cart, subtotal, tax, shippingCost, discount };
 };
@@ -50,13 +44,7 @@ const applyCoupon = (couponCode, subtotal) => {
     return 0;
 };
 
-/**
- * Actually places the order: creates the Order + OrderItems, decrements stock,
- * records purchase interactions, clears the cart, and emails a confirmation.
- * This should only ever be called once payment is either not required upfront
- * (COD/wallet-initiate) or has already succeeded (card payments).
- */
-const placeOrderFromCart = async ({ userId, userEmail, userName, shippingAddress, paymentMethod, couponCode, notes, paymentStatus = 'PENDING', status = 'PENDING', transactionId = null }) => {
+const createPendingOrderFromCart = async ({ userId, shippingAddress, paymentMethod, couponCode, notes, paymentStatus = 'PENDING', status = 'PENDING', transactionId = null }) => {
     const { cart, subtotal, tax, shippingCost } = await calculateCartTotals(userId);
     const discount = applyCoupon(couponCode, subtotal);
     const total = subtotal + tax + shippingCost - discount;
@@ -92,59 +80,91 @@ const placeOrderFromCart = async ({ userId, userEmail, userName, shippingAddress
         include: { items: true }
     });
 
-    for (const item of cart.items) {
-        await prisma.product.update({
-            where: { id: item.productId },
-            data: { stock: { decrement: item.quantity }, popularity: { increment: 5 } }
-        });
-        await prisma.interaction.upsert({
-            where: {
-                userId_productId_type: {
-                    userId,
-                    productId: item.productId,
-                    type: 'PURCHASE'
-                }
-            },
-
-            update: {
-                weight: {
-                    increment: 10
-                },
-                createdAt: new Date()
-            },
-
-            create: {
-                userId,
-                productId: item.productId,
-                type: 'PURCHASE',
-                weight: 10
-            }
-        }).catch(() => { });
-    }
-
     await prisma.cartItem.deleteMany({ where: { cartId: cart.id } });
-
-    //   sendEmail({
-    //     to: userEmail,
-    //     subject: `Order Confirmed - ${order.orderNumber}`,
-    //     html: `
-    //       <h2>Order Confirmed!</h2>
-    //       <p>Thank you for your order, ${userName}!</p>
-    //       <p><strong>Order Number:</strong> ${order.orderNumber}</p>
-    //       <p><strong>Total:</strong> PKR ${total.toLocaleString()}</p>
-    //       <p><strong>Payment:</strong> ${paymentMethod}</p>
-    //       <p>We'll notify you when your order is shipped.</p>
-    //     `
-    //   }).catch(err => logger.warn('Order email failed:', err.message));
-
-    const orderMail = orderConfirmationEmailTemplate({ name: userName }, order);
-    sendEmail({
-        to: userEmail,
-        subject: orderMail.subject,
-        html: orderMail.html
-    }).catch(err => logger.warn('Order email failed:', err.message));
 
     return order;
 };
 
-module.exports = { calculateCartTotals, applyCoupon, placeOrderFromCart, generateOrderNumber };
+const finalizeOrderPayment = async (orderId, { paymentStatus = 'PAID', status = 'PROCESSING', transactionId } = {}) => {
+    const order = await prisma.$transaction(async (tx) => {
+        const existingOrder = await tx.order.findUnique({
+            where: { id: orderId },
+            include: { items: true }
+        });
+
+        if (!existingOrder) {
+            const err = new Error('Order not found');
+            err.statusCode = 404;
+            throw err;
+        }
+
+        if (existingOrder.paymentStatus === 'PAID') {
+            return existingOrder;
+        }
+
+        for (const item of existingOrder.items) {
+            const result = await tx.product.updateMany({
+                where: { id: item.productId, stock: { gte: item.quantity } },
+                data: { stock: { decrement: item.quantity }, popularity: { increment: 5 } }
+            });
+
+            if (result.count === 0) {
+                await tx.product.updateMany({
+                    where: { id: item.productId },
+                    data: { stock: 0, popularity: { increment: 5 } }
+                });
+                logger.warn(`Stock ran out for product ${item.productId} while finalizing paid order ${orderId} — clamped to 0, please review.`);
+            }
+        }
+
+        return tx.order.update({
+            where: { id: orderId },
+            data: {
+                paymentStatus,
+                status,
+                ...(transactionId ? { transactionId } : {})
+            },
+            include: { items: true }
+        });
+    });
+
+    for (const item of order.items) {
+        await prisma.interaction.upsert({
+            where: { userId_productId_type: { userId: order.userId, productId: item.productId, type: 'PURCHASE' } },
+            update: { weight: { increment: 10 }, createdAt: new Date() },
+            create: { userId: order.userId, productId: item.productId, type: 'PURCHASE', weight: 10 }
+        }).catch(() => { });
+    }
+
+    const user = await prisma.user.findUnique({ where: { id: order.userId }, select: { name: true, email: true } });
+    if (user) {
+        const orderMail = orderConfirmationEmailTemplate(user, order);
+        sendEmail({ to: user.email, subject: orderMail.subject, html: orderMail.html })
+            .catch(err => logger.warn('Order email failed:', err.message));
+    }
+
+    return order;
+};
+
+const placeOrderFromCart = async (params) => {
+    const pendingOrder = await createPendingOrderFromCart({
+        ...params,
+        paymentStatus: params.paymentStatus === 'PAID' ? 'PENDING' : params.paymentStatus,
+        status: 'PENDING'
+    });
+
+    return finalizeOrderPayment(pendingOrder.id, {
+        paymentStatus: params.paymentStatus === 'PAID' ? 'PAID' : 'PENDING',
+        status: params.status || 'PROCESSING',
+        transactionId: params.transactionId
+    });
+};
+
+module.exports = {
+    calculateCartTotals,
+    applyCoupon,
+    createPendingOrderFromCart,
+    finalizeOrderPayment,
+    placeOrderFromCart,
+    generateOrderNumber
+};
