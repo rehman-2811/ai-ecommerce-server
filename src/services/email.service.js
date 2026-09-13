@@ -1,77 +1,42 @@
 // src/services/email.service.js
-
-const nodemailer = require('nodemailer');
-
+const axios = require('axios');
 const { logger } = require('../utils/logger');
 
-let transporter = null;
-
-const getTransporter = () => {
-  if (transporter) return transporter;
-
-  console.log('EMAIL_USER:', process.env.EMAIL_USER);
-  console.log(
-    'EMAIL_PASS EXISTS:',
-    !!process.env.EMAIL_PASS
-  );
-
-  transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
-    },
-    connectionTimeout: 30000,
-    greetingTimeout: 30000,
-    socketTimeout: 30000
-  });
-
-  return transporter;
-};
+const BREVO_API_URL = 'https://api.brevo.com/v3/smtp/email';
 
 const sendEmail = async ({ to, subject, html, text }) => {
   try {
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-      logger.warn(
-        'EMAIL_USER / EMAIL_PASS not configured — skipping email'
-      );
-
+    if (!process.env.BREVO_API_KEY || !process.env.EMAIL_FROM_ADDRESS) {
+      logger.warn('BREVO_API_KEY / EMAIL_FROM_ADDRESS not configured — skipping email');
       return null;
     }
 
-    const transport = getTransporter();
+    const response = await axios.post(
+      BREVO_API_URL,
+      {
+        sender: {
+          name: process.env.EMAIL_FROM_NAME || 'Aqua Fits',
+          email: process.env.EMAIL_FROM_ADDRESS
+        },
+        to: [{ email: to }],
+        subject,
+        htmlContent: html,
+        textContent: text || html.replace(/<[^>]+>/g, '')
+      },
+      {
+        headers: {
+          'api-key': process.env.BREVO_API_KEY,
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        timeout: 15000
+      }
+    );
 
-    // Test SMTP connection
-    await transport.verify();
-
-    console.log('SMTP CONNECTION SUCCESS');
-
-    const info = await transport.sendMail({
-      from:
-        process.env.EMAIL_FROM ||
-        `"Aqua Fits" <${process.env.EMAIL_USER}>`,
-      to,
-      subject,
-      html,
-      text: text || html.replace(/<[^>]+>/g, '')
-    });
-
-    logger.info(`Email sent: ${info.messageId}`);
-
-    return info;
-
+    logger.info(`Email sent via Brevo: ${response.data?.messageId}`);
+    return response.data;
   } catch (error) {
-    console.error(
-      'EMAIL SEND ERROR:',
-      error.stack || error.message || error
-    );
-
-    logger.error(
-      `Email send error: ${error.stack || error.message || error}`
-    );
-
+    logger.error('Email send error:', error.response?.data || error.message);
     return null;
   }
 };
