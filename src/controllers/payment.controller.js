@@ -3,8 +3,7 @@ const { prisma } = require('../config/database');
 const crypto = require('crypto');
 const { logger } = require('../utils/logger');
 const stripe = require('../config/stripe');
-const { calculateCartTotals, applyCoupon, placeOrderFromCart } = require('../services/order.service');
-
+const { calculateCartTotals, applyCoupon, placeOrderFromCart, finalizeOrderPayment } = require('../services/order.service');
 // @desc    Initiate JazzCash payment
 // @route   POST /api/payments/jazzcash/initiate
 const initiateJazzCash = async (req, res) => {
@@ -70,11 +69,8 @@ const jazzCashReturn = async (req, res) => {
   try {
     const { pp_ResponseCode, ppmpf_1: orderId, pp_TxnRefNo } = req.body;
 
-    if (pp_ResponseCode === '000') {
-      await prisma.order.update({
-        where: { id: orderId },
-        data: { paymentStatus: 'PAID', status: 'PROCESSING', transactionId: pp_TxnRefNo }
-      });
+        if (pp_ResponseCode === '000') {
+      await finalizeOrderPayment(orderId, { paymentStatus: 'PAID', status: 'PROCESSING', transactionId: pp_TxnRefNo });
     } else {
       await prisma.order.update({
         where: { id: orderId },
@@ -86,6 +82,23 @@ const jazzCashReturn = async (req, res) => {
   } catch (error) {
     logger.error('JazzCash return error:', error);
     res.redirect(`${process.env.CLIENT_URL}/payment-failed`);
+  }
+};
+
+
+const confirmJazzCash = async (req, res) => {
+  try {
+    const { orderId } = req.body;
+    const order = await prisma.order.findFirst({
+      where: { id: orderId, userId: req.user.id, paymentMethod: 'JAZZCASH' }
+    });
+    if (!order) return res.status(404).json({ success: false, message: 'Order not found' });
+
+    const updated = await finalizeOrderPayment(orderId, { paymentStatus: 'PAID', status: 'PROCESSING' });
+    res.json({ success: true, message: 'JazzCash payment confirmed', order: updated });
+  } catch (error) {
+    logger.error('JazzCash confirm error:', error);
+    res.status(error.statusCode || 500).json({ success: false, message: error.message || 'Failed to confirm payment' });
   }
 };
 
@@ -131,6 +144,23 @@ const initiateEasyPaisa = async (req, res) => {
   } catch (error) {
     logger.error('EasyPaisa initiate error:', error);
     res.status(500).json({ success: false, message: 'Payment initiation failed' });
+  }
+};
+
+
+const confirmEasyPaisa = async (req, res) => {
+  try {
+    const { orderId } = req.body;
+    const order = await prisma.order.findFirst({
+      where: { id: orderId, userId: req.user.id, paymentMethod: 'EASYPAISA' }
+    });
+    if (!order) return res.status(404).json({ success: false, message: 'Order not found' });
+
+    const updated = await finalizeOrderPayment(orderId, { paymentStatus: 'PAID', status: 'PROCESSING' });
+    res.json({ success: true, message: 'EasyPaisa payment confirmed', order: updated });
+  } catch (error) {
+    logger.error('EasyPaisa confirm error:', error);
+    res.status(error.statusCode || 500).json({ success: false, message: error.message || 'Failed to confirm payment' });
   }
 };
 
@@ -259,4 +289,4 @@ const confirmCOD = async (req, res) => {
   }
 };
 
-module.exports = { initiateJazzCash, jazzCashReturn, initiateEasyPaisa, createCardPaymentIntent, confirmCardPayment, confirmCOD };
+module.exports = { initiateJazzCash, jazzCashReturn, confirmJazzCash, initiateEasyPaisa, confirmEasyPaisa, createCardPaymentIntent, confirmCardPayment, confirmCOD };

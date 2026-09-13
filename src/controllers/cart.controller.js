@@ -65,7 +65,7 @@ const addToCart = async (req, res) => {
       });
     }
 
-   
+
     // Track ADD_TO_CART interaction
     await prisma.interaction.upsert({
 
@@ -105,17 +105,26 @@ const updateCart = async (req, res) => {
   try {
     const { itemId, quantity } = req.body;
 
+    const item = await prisma.cartItem.findUnique({
+      where: { id: itemId },
+      include: { cart: true }
+    });
+
+    if (!item || item.cart.userId !== req.user.id) {
+      return res.status(404).json({ success: false, message: 'Cart item not found' });
+    }
+
     if (quantity < 1) {
       await prisma.cartItem.delete({ where: { id: itemId } });
       return res.json({ success: true, message: 'Item removed' });
     }
 
-    const item = await prisma.cartItem.update({
+    const updated = await prisma.cartItem.update({
       where: { id: itemId },
       data: { quantity }
     });
 
-    res.json({ success: true, item });
+    res.json({ success: true, item: updated });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Failed to update cart' });
   }
@@ -125,6 +134,15 @@ const updateCart = async (req, res) => {
 // @route   DELETE /api/cart/remove/:itemId
 const removeFromCart = async (req, res) => {
   try {
+    const item = await prisma.cartItem.findUnique({
+      where: { id: req.params.itemId },
+      include: { cart: true }
+    });
+
+    if (!item || item.cart.userId !== req.user.id) {
+      return res.status(404).json({ success: false, message: 'Cart item not found' });
+    }
+
     await prisma.cartItem.delete({ where: { id: req.params.itemId } });
     res.json({ success: true, message: 'Item removed from cart' });
   } catch (error) {

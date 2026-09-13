@@ -3,8 +3,7 @@ const { prisma } = require('../config/database');
 const { v4: uuidv4 } = require('uuid');
 const { sendEmail } = require('../services/email.service');
 const { logger } = require('../utils/logger');
-const { placeOrderFromCart } = require('../services/order.service');
-
+const { placeOrderFromCart, createPendingOrderFromCart } = require('../services/order.service');
 const generateOrderNumber = () => {
   const timestamp = Date.now().toString(36).toUpperCase();
   const random = Math.random().toString(36).substring(2, 6).toUpperCase();
@@ -135,17 +134,25 @@ const createOrder = async (req, res) => {
       });
     }
 
-    const order = await placeOrderFromCart({
-      userId: req.user.id,
-      userEmail: req.user.email,
-      userName: req.user.name,
-      shippingAddress,
-      paymentMethod,
-      couponCode,
-      notes,
-      paymentStatus: 'PENDING',
-      status: 'PENDING'
-    });
+    const order = paymentMethod === 'COD'
+      ? await placeOrderFromCart({
+        userId: req.user.id,
+        shippingAddress,
+        paymentMethod,
+        couponCode,
+        notes,
+        paymentStatus: 'PENDING',
+        status: 'PENDING'
+      })
+      : await createPendingOrderFromCart({
+        userId: req.user.id,
+        shippingAddress,
+        paymentMethod,
+        couponCode,
+        notes,
+        paymentStatus: 'PENDING',
+        status: 'PENDING'
+      });
 
     res.status(201).json({ success: true, order });
   } catch (error) {
