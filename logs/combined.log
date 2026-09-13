@@ -2022,3 +2022,12 @@
 {"level":"info","message":"Redis connected","timestamp":"2026-09-13 00:36:43"}
 {"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-09-13 00:36:43"}
 {"level":"info","message":"Environment: development","timestamp":"2026-09-13 00:36:43"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-09-13 11:00:45"}
+{"level":"info","message":"Redis connected","timestamp":"2026-09-13 11:00:45"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-09-13 11:00:45"}
+{"level":"info","message":"Environment: development","timestamp":"2026-09-13 11:00:45"}
+{"level":"info","message":"Email sent: <b3303d33-9bee-73d9-20dc-f366a7848f73@resend.dev>","timestamp":"2026-09-13 11:01:27"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-09-13 12:42:56"}
+{"level":"info","message":"Redis connected","timestamp":"2026-09-13 12:42:56"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-09-13 12:42:57"}
+{"level":"info","message":"Environment: development","timestamp":"2026-09-13 12:42:57"}
