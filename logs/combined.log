@@ -2031,3 +2031,50 @@
 {"level":"info","message":"Redis connected","timestamp":"2026-09-13 12:42:56"}
 {"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-09-13 12:42:57"}
 {"level":"info","message":"Environment: development","timestamp":"2026-09-13 12:42:57"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-09-13 21:12:53"}
+{"level":"info","message":"Redis connected","timestamp":"2026-09-13 21:12:54"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-09-13 21:12:57"}
+{"level":"info","message":"Environment: development","timestamp":"2026-09-13 21:12:57"}
+{"code":"unauthorized","level":"error","message":"Email send error: Key not found","timestamp":"2026-09-13 21:16:08"}
+{"code":"unauthorized","level":"error","message":"Email send error: Key not found","timestamp":"2026-09-13 21:16:58"}
+{"code":"unauthorized","level":"error","message":"Email send error: Key not found","timestamp":"2026-09-13 21:18:05"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"Redis Error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TLSWrap.onStreamRead (node:internal/stream_base_commons:216:20)","syscall":"read","timestamp":"2026-09-13 21:20:57"}
+{"level":"warn","message":"Redis connection closed","timestamp":"2026-09-13 21:20:57"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"enormous-magpie-123134.upstash.io","level":"error","message":"Redis Error: getaddrinfo ENOTFOUND enormous-magpie-123134.upstash.io","stack":"Error: getaddrinfo ENOTFOUND enormous-magpie-123134.upstash.io\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26)","syscall":"getaddrinfo","timestamp":"2026-09-13 21:20:57"}
+{"level":"warn","message":"Redis connection closed","timestamp":"2026-09-13 21:20:57"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"enormous-magpie-123134.upstash.io","level":"error","message":"Redis Error: getaddrinfo ENOTFOUND enormous-magpie-123134.upstash.io","stack":"Error: getaddrinfo ENOTFOUND enormous-magpie-123134.upstash.io\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26)","syscall":"getaddrinfo","timestamp":"2026-09-13 21:20:57"}
+{"level":"warn","message":"Redis connection closed","timestamp":"2026-09-13 21:20:58"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"enormous-magpie-123134.upstash.io","level":"error","message":"Redis Error: getaddrinfo ENOTFOUND enormous-magpie-123134.upstash.io","stack":"Error: getaddrinfo ENOTFOUND enormous-magpie-123134.upstash.io\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26)","syscall":"getaddrinfo","timestamp":"2026-09-13 21:20:58"}
+{"level":"warn","message":"Redis connection closed","timestamp":"2026-09-13 21:20:58"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"enormous-magpie-123134.upstash.io","level":"error","message":"Redis Error: getaddrinfo ENOTFOUND enormous-magpie-123134.upstash.io","stack":"Error: getaddrinfo ENOTFOUND enormous-magpie-123134.upstash.io\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26)","syscall":"getaddrinfo","timestamp":"2026-09-13 21:20:58"}
+{"level":"warn","message":"Redis connection closed","timestamp":"2026-09-13 21:20:58"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"enormous-magpie-123134.upstash.io","level":"error","message":"Redis Error: getaddrinfo ENOTFOUND enormous-magpie-123134.upstash.io","stack":"Error: getaddrinfo ENOTFOUND enormous-magpie-123134.upstash.io\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26)","syscall":"getaddrinfo","timestamp":"2026-09-13 21:20:58"}
+{"level":"warn","message":"Redis connection closed","timestamp":"2026-09-13 21:20:58"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"enormous-magpie-123134.upstash.io","level":"error","message":"Redis Error: getaddrinfo ENOTFOUND enormous-magpie-123134.upstash.io","stack":"Error: getaddrinfo ENOTFOUND enormous-magpie-123134.upstash.io\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26)","syscall":"getaddrinfo","timestamp":"2026-09-13 21:20:58"}
+{"level":"warn","message":"Redis connection closed","timestamp":"2026-09-13 21:20:58"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"enormous-magpie-123134.upstash.io","level":"error","message":"Redis Error: getaddrinfo ENOTFOUND enormous-magpie-123134.upstash.io","stack":"Error: getaddrinfo ENOTFOUND enormous-magpie-123134.upstash.io\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26)","syscall":"getaddrinfo","timestamp":"2026-09-13 21:20:59"}
+{"level":"warn","message":"Redis connection closed","timestamp":"2026-09-13 21:20:59"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"enormous-magpie-123134.upstash.io","level":"error","message":"Redis Error: getaddrinfo ENOTFOUND enormous-magpie-123134.upstash.io","stack":"Error: getaddrinfo ENOTFOUND enormous-magpie-123134.upstash.io\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26)","syscall":"getaddrinfo","timestamp":"2026-09-13 21:20:59"}
+{"level":"warn","message":"Redis connection closed","timestamp":"2026-09-13 21:20:59"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"enormous-magpie-123134.upstash.io","level":"error","message":"Redis Error: getaddrinfo ENOTFOUND enormous-magpie-123134.upstash.io","stack":"Error: getaddrinfo ENOTFOUND enormous-magpie-123134.upstash.io\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26)","syscall":"getaddrinfo","timestamp":"2026-09-13 21:21:00"}
+{"level":"warn","message":"Redis connection closed","timestamp":"2026-09-13 21:21:00"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-09-13 21:24:05"}
+{"level":"info","message":"Redis connected","timestamp":"2026-09-13 21:24:05"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-09-13 21:24:05"}
+{"level":"info","message":"Environment: development","timestamp":"2026-09-13 21:24:05"}
+{"level":"info","message":"Email sent via Brevo: <202609131627.81464853110@smtp-relay.mailin.fr>","timestamp":"2026-09-13 21:24:28"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-09-13 21:31:08"}
+{"level":"info","message":"Redis connected","timestamp":"2026-09-13 21:31:08"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-09-13 21:31:08"}
+{"level":"info","message":"Environment: development","timestamp":"2026-09-13 21:31:08"}
+{"level":"info","message":"Email sent via Brevo: <202609131635.65518245760@smtp-relay.mailin.fr>","timestamp":"2026-09-13 21:31:33"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"Redis Error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TLSWrap.onStreamRead (node:internal/stream_base_commons:216:20)","syscall":"read","timestamp":"2026-09-13 22:10:01"}
+{"level":"warn","message":"Redis connection closed","timestamp":"2026-09-13 22:10:03"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-09-13 22:25:17"}
+{"level":"info","message":"Redis connected","timestamp":"2026-09-13 22:25:17"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-09-13 22:25:17"}
+{"level":"info","message":"Environment: development","timestamp":"2026-09-13 22:25:17"}
+{"level":"info","message":"MongoDB connected via Prisma","timestamp":"2026-09-13 22:27:03"}
+{"level":"info","message":"Redis connected","timestamp":"2026-09-13 22:27:04"}
+{"level":"info","message":"Server running on http://localhost:5000","timestamp":"2026-09-13 22:27:04"}
+{"level":"info","message":"Environment: development","timestamp":"2026-09-13 22:27:04"}
