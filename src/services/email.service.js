@@ -1,11 +1,19 @@
 // src/services/email.service.js
+
 const nodemailer = require('nodemailer');
+
 const { logger } = require('../utils/logger');
 
 let transporter = null;
 
 const getTransporter = () => {
   if (transporter) return transporter;
+
+  console.log('EMAIL_USER:', process.env.EMAIL_USER);
+  console.log(
+    'EMAIL_PASS EXISTS:',
+    !!process.env.EMAIL_PASS
+  );
 
   transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST || 'smtp.gmail.com',
@@ -26,14 +34,24 @@ const getTransporter = () => {
 const sendEmail = async ({ to, subject, html, text }) => {
   try {
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-      logger.warn('EMAIL_USER / EMAIL_PASS not configured — skipping email');
+      logger.warn(
+        'EMAIL_USER / EMAIL_PASS not configured — skipping email'
+      );
+
       return null;
     }
 
     const transport = getTransporter();
 
+    // Test SMTP connection
+    await transport.verify();
+
+    console.log('SMTP CONNECTION SUCCESS');
+
     const info = await transport.sendMail({
-      from: process.env.EMAIL_FROM || `"Aqua Fits" <${process.env.EMAIL_USER}>`,
+      from:
+        process.env.EMAIL_FROM ||
+        `"Aqua Fits" <${process.env.EMAIL_USER}>`,
       to,
       subject,
       html,
@@ -41,9 +59,19 @@ const sendEmail = async ({ to, subject, html, text }) => {
     });
 
     logger.info(`Email sent: ${info.messageId}`);
+
     return info;
+
   } catch (error) {
-    logger.error('Email send error:', error.message);
+    console.error(
+      'EMAIL SEND ERROR:',
+      error.stack || error.message || error
+    );
+
+    logger.error(
+      `Email send error: ${error.stack || error.message || error}`
+    );
+
     return null;
   }
 };
