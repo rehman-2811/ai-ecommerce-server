@@ -351,10 +351,15 @@ const googleAuth = async (req, res) => {
     //   return res.status(400).json({ success: false, message: 'Could not get email from Google' });
     // }
 
-    const { credential } = req.body;
+    const { credential, mode } = req.body;
 
     if (!credential) {
       return res.status(400).json({ success: false, message: 'Google credential required' });
+    }
+
+    // 'mode' batata hai ke request Sign Up se aayi ya Sign In se
+    if (mode !== 'signup' && mode !== 'signin') {
+      return res.status(400).json({ success: false, message: 'Invalid Google authentication mode' });
     }
 
     const ticket = await googleClient.verifyIdToken({
@@ -362,10 +367,10 @@ const googleAuth = async (req, res) => {
       audience: process.env.GOOGLE_CLIENT_ID
     });
     const payload = ticket.getPayload();
-    const { email, name, picture, sub } = payload;
+    const { email, name, picture, email_verified } = payload;
 
-    if (!email) {
-      return res.status(400).json({ success: false, message: 'Could not get email from Google' });
+    if (!email || email_verified === false) {
+      return res.status(400).json({ success: false, message: 'Could not get a verified email from Google' });
     }
 
     // Check if user exists
@@ -373,8 +378,10 @@ const googleAuth = async (req, res) => {
       where: { email: email.toLowerCase() }
     });
 
+    const isNewUser = !user;
+
     if (user) {
-      // Update avatar if needed
+      // Existing account — dono modes me login allowed
       if (picture && !user.avatar) {
         user = await prisma.user.update({
           where: { id: user.id },
@@ -382,7 +389,15 @@ const googleAuth = async (req, res) => {
         });
       }
     } else {
-      // Create new user
+      if (mode === 'signin') {
+        // Sign In se kabhi naya account nahi banega
+        return res.status(404).json({
+          success: false,
+          message: 'Account not found. Please sign up first using Google.'
+        });
+      }
+
+      // mode === 'signup' -> naya user create
       user = await prisma.user.create({
         data: {
           name: name || email.split('@')[0],
@@ -394,7 +409,6 @@ const googleAuth = async (req, res) => {
         }
       });
 
-      // Create cart for new user
       await prisma.cart.create({ data: { userId: user.id } });
     }
 
@@ -414,7 +428,7 @@ const googleAuth = async (req, res) => {
     // Send response
     res.json({
       success: true,
-      message: user ? 'Logged in with Google' : 'Account created with Google',
+      message: isNewUser ? 'Account created with Google' : 'Logged in with Google',
       user: {
         id: user.id,
         name: user.name,
