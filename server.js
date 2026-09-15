@@ -30,6 +30,7 @@ const PORT = process.env.PORT || 5000;
 // Security middleware
 app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" },
+  crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" },
   contentSecurityPolicy: false
 }));
 
