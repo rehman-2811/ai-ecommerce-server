@@ -22,6 +22,8 @@ const paymentRoutes = require('./src/routes/payment.routes');
 const adminRoutes = require('./src/routes/admin.routes');
 const uploadRoutes = require('./src/routes/upload.routes');
 const contactRoutes = require('./src/routes/contact.routes');
+const creditRoutes = require('./src/routes/credit.routes');
+const { stripeCreditWebhook } = require('./src/controllers/credit.controller');
 
 
 const app = express();
@@ -45,6 +47,9 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
+
+app.post('/api/credits/stripe/webhook', express.raw({ type: 'application/json' }), stripeCreditWebhook);
+
 
 // Body parsing
 app.use(express.json({ limit: '10mb' }));
@@ -79,7 +84,7 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/contact', contactRoutes);
-
+app.use('/api/credits', creditRoutes);
 // Error handling
 app.use(notFound);
 app.use(errorHandler);

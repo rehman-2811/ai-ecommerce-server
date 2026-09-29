@@ -351,6 +351,7 @@ const getAllUsers = async (req, res) => {
         select: {
           id: true, name: true, email: true, role: true,
           isActive: true, isVerified: true, createdAt: true, avatar: true,
+          tryOnCredits: true,
           _count: { select: { orders: true, tryOnSessions: true } }
         }
       }),
@@ -386,7 +387,9 @@ const getVTONAnalytics = async (req, res) => {
   try {
     const [
       totalSessions, completedSessions, likedSessions, failedSessions,
-      avgProcessingTime, mostTriedProducts
+      avgProcessingTime, mostTriedProducts,
+      creditsPurchased, revenueFromCredits, creditsUsed, creditsRefunded,
+      totalOutstandingCredits
     ] = await Promise.all([
       prisma.tryOnSession.count(),
       prisma.tryOnSession.count({ where: { status: 'COMPLETED' } }),
@@ -401,7 +404,12 @@ const getVTONAnalytics = async (req, res) => {
         _count: true,
         orderBy: { _count: { productId: 'desc' } },
         take: 10
-      })
+      }),
+      prisma.creditTransaction.aggregate({ where: { type: 'PURCHASE', credits: { gt: 0 } }, _sum: { credits: true } }),
+      prisma.creditTransaction.aggregate({ where: { type: 'PURCHASE', credits: { gt: 0 } }, _sum: { amountPaid: true } }),
+      prisma.creditTransaction.aggregate({ where: { type: 'DEDUCT' }, _sum: { credits: true } }),
+      prisma.creditTransaction.aggregate({ where: { type: 'REFUND' }, _sum: { credits: true } }),
+      prisma.user.aggregate({ _sum: { tryOnCredits: true } })
     ]);
 
     // Fetch product details for most tried
@@ -426,6 +434,13 @@ const getVTONAnalytics = async (req, res) => {
         successRate: totalSessions > 0 ? ((completedSessions / totalSessions) * 100).toFixed(1) : 0,
         likeRate: completedSessions > 0 ? ((likedSessions / completedSessions) * 100).toFixed(1) : 0,
         avgProcessingTime: avgProcessingTime._avg.processingTime?.toFixed(1) || 0
+      },
+      creditEconomy: {
+        creditsSoldTotal: creditsPurchased._sum.credits || 0,
+        revenueFromCredits: revenueFromCredits._sum.amountPaid || 0,
+        creditsUsedTotal: Math.abs(creditsUsed._sum.credits || 0),
+        creditsRefundedTotal: creditsRefunded._sum.credits || 0,
+        creditsCurrentlyOutstanding: totalOutstandingCredits._sum.tryOnCredits || 0
       },
       mostTriedProducts: mostTriedWithDetails
     });

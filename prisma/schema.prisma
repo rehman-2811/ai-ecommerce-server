@@ -57,6 +57,20 @@ enum ContactStatus {
   REPLIED
 }
 
+enum CreditPurchaseStatus {
+  PENDING
+  PROCESSING
+  PAID
+  FAILED
+}
+
+enum CreditTransactionType {
+  SIGNUP_BONUS
+  PURCHASE
+  DEDUCT
+  REFUND
+}
+
 model User {
   id           String    @id @default(auto()) @map("_id") @db.ObjectId
   email        String    @unique
@@ -69,15 +83,52 @@ model User {
   resetExpiry  DateTime?
   refreshToken String?
   isActive     Boolean   @default(true)
+  tryOnCredits Int       @default(8)
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
 
-  addresses     Address[]
-  cart          Cart?
-  orders        Order[]
-  tryOnSessions TryOnSession[]
-  interactions  Interaction[]
-  reviews       Review[]
+  addresses          Address[]
+  cart               Cart?
+  orders             Order[]
+  tryOnSessions      TryOnSession[]
+  interactions       Interaction[]
+  reviews            Review[]
+  creditTransactions CreditTransaction[]
+  creditPurchases    CreditPurchase[]
+}
+
+model CreditTransaction {
+  id            String                @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String                @db.ObjectId
+  user          User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type          CreditTransactionType
+  credits       Int
+  balanceAfter  Int
+  amountPaid    Float?
+  paymentMethod PaymentMethod?
+  transactionId String?
+  description   String?
+  createdAt     DateTime              @default(now())
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model CreditPurchase {
+  id            String               @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String               @db.ObjectId
+  user          User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  providerTxnId String               @unique
+  method        PaymentMethod
+  packageId     String
+  credits       Int
+  amount        Float
+  status        CreditPurchaseStatus @default(PENDING)
+  paidAt        DateTime?
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt
+
+  @@index([userId])
 }
 
 model Address {
@@ -252,18 +303,25 @@ model Review {
 }
 
 model ContactMessage {
-  id        String        @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  email     String
-  subject   String?
-  message   String
-  status    ContactStatus @default(NEW)
-  userId    String?       @db.ObjectId
-  adminReply String?         
-  repliedAt  DateTime? 
-  createdAt DateTime      @default(now())
-  updatedAt DateTime      @updatedAt
+  id         String        @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  email      String
+  subject    String?
+  message    String
+  status     ContactStatus @default(NEW)
+  userId     String?       @db.ObjectId
+  adminReply String?
+  repliedAt  DateTime?
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
 
   @@index([status])
   @@index([createdAt])
+}
+
+model PaymentIntentClaim {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  paymentIntentId String   @unique
+  orderId         String?  @db.ObjectId
+  createdAt       DateTime @default(now())
 }

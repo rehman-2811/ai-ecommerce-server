@@ -3,6 +3,8 @@ const { prisma } = require('../config/database');
 const { fashnService } = require('../services/fashn.service');
 const { uploadBuffer, uploadFromUrl } = require('../config/cloudinary');
 const { logger } = require('../utils/logger');
+const { deductCredits, addCredits } = require('../services/credit.service');
+const { TRY_ON_COST_CREDITS } = require('../config/creditPackages');
 
 // @desc    Submit try-on job
 // @route   POST /api/vton/try-on
@@ -33,6 +35,19 @@ const submitTryOn = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Product does not support virtual try-on' });
     }
 
+    // Deduct credits FIRST (atomic) — before any upload or paid API call
+    let remainingCredits;
+    try {
+      remainingCredits = await deductCredits(req.user.id, TRY_ON_COST_CREDITS, {
+        description: `Try-on: ${product.name}`,
+      });
+    } catch (creditErr) {
+      if (creditErr.code === 'INSUFFICIENT_CREDITS') {
+        return res.status(402).json({ success: false, message: creditErr.message, code: 'INSUFFICIENT_CREDITS' });
+      }
+      throw creditErr;
+    }
+
     // Upload user image to Cloudinary
     const uploadResult = await uploadBuffer(userImageFile.buffer, userImageFile.mimetype, 'tryon/users');
     const userImageUrl = uploadResult.secure_url;
@@ -47,9 +62,8 @@ const submitTryOn = async (req, res) => {
       }
     });
 
-    // Submit to Colab (async)
-    processTryOn(session.id, userImageUrl, product.garmentImageUrl);
-
+    // Submit to Fashn AI (async)
+    processTryOn(session.id, userImageUrl, product.garmentImageUrl, req.user.id, TRY_ON_COST_CREDITS);
     // Track interaction
     await prisma.interaction.upsert({
       where: {
@@ -77,7 +91,9 @@ const submitTryOn = async (req, res) => {
       success: true,
       message: 'Try-on submitted successfully',
       sessionId: session.id,
-      status: 'PROCESSING'
+      status: 'PROCESSING',
+      creditsCharged: TRY_ON_COST_CREDITS,
+      creditsRemaining: remainingCredits
     });
   } catch (error) {
     logger.error('VTON submit error:', error);
@@ -86,7 +102,7 @@ const submitTryOn = async (req, res) => {
 };
 
 // Background processing function
-const processTryOn = async (sessionId, userImageUrl, garmentImageUrl) => {
+const processTryOn = async (sessionId, userImageUrl, garmentImageUrl, userId, creditsCharged) => {
   const startTime = Date.now();
   let retries = 0;
 
@@ -128,6 +144,18 @@ const processTryOn = async (sessionId, userImageUrl, garmentImageUrl) => {
           where: { id: sessionId },
           data: { status: 'FAILED', errorMessage: error.message }
         });
+
+                // Refund: the user shouldn't pay for a result they never got
+        if (userId && creditsCharged) {
+          try {
+            await addCredits(userId, creditsCharged, {
+              type: 'REFUND',
+              description: `Refund: try-on failed (session ${sessionId})`,
+            });
+          } catch (refundErr) {
+            logger.error(`Failed to refund credits for session ${sessionId}:`, refundErr);
+          }
+        }
       } else {
         await new Promise(resolve => setTimeout(resolve, 5000 * retries));
       }
@@ -142,7 +170,7 @@ const getStatus = async (req, res) => {
     const session = await prisma.tryOnSession.findFirst({
       where: { id: req.params.sessionId, userId: req.user.id },
       include: {
-        product: { select: { name: true, images: true,garmentImageUrl: true } }
+        product: { select: { name: true, images: true, garmentImageUrl: true } }
       }
     });
 
@@ -163,7 +191,7 @@ const getResult = async (req, res) => {
     const session = await prisma.tryOnSession.findFirst({
       where: { id: req.params.sessionId, userId: req.user.id },
       include: {
-        product: { select: { id: true, name: true, price: true, images: true, category: true,garmentImageUrl: true } }
+        product: { select: { id: true, name: true, price: true, images: true, category: true, garmentImageUrl: true } }
       }
     });
 
@@ -245,7 +273,7 @@ const getHistory = async (req, res) => {
       prisma.tryOnSession.findMany({
         where: { userId: req.user.id },
         include: {
-          product: { select: { id: true, name: true, price: true, images: true,garmentImageUrl: true } }
+          product: { select: { id: true, name: true, price: true, images: true, garmentImageUrl: true } }
         },
         orderBy: { createdAt: 'desc' },
         skip, take: parseInt(limit)
@@ -279,7 +307,7 @@ const retryTryOn = async (req, res) => {
       data: { status: 'PROCESSING', errorMessage: null }
     });
 
-    processTryOn(session.id, session.userImageUrl, session.product.garmentImageUrl);
+    processTryOn(session.id, session.userImageUrl, session.product.garmentImageUrl,session.userId, TRY_ON_COST_CREDITS);
 
     res.json({ success: true, message: 'Retry started', sessionId: session.id, status: 'PROCESSING' });
   } catch (error) {

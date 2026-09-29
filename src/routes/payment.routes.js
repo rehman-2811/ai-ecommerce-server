@@ -1,11 +1,21 @@
 // src/routes/payment.routes.js
 const express = require('express');
 const router = express.Router();
-const { initiateJazzCash, jazzCashReturn, confirmJazzCash, initiateEasyPaisa, confirmEasyPaisa, createCardPaymentIntent, confirmCardPayment, confirmCOD } = require('../controllers/payment.controller');
+const {
+  getPaymentConfig,
+  initiateJazzCash, jazzCashReturn, confirmJazzCash,
+  initiateEasyPaisa, easyPaisaReturn, confirmEasyPaisa,
+  createCardPaymentIntent, confirmCardPayment, confirmCOD
+} = require('../controllers/payment.controller');
 const { protect } = require('../middleware/auth');
 
-router.post('/jazzcash/initiate', protect, initiateJazzCash);
+router.get('/config', getPaymentConfig);
+
+// Gateway callbacks: not a logged-in user, trusted via signature/response-code verification
 router.post('/jazzcash/return', jazzCashReturn);
+router.post('/easypaisa/return', easyPaisaReturn);
+
+router.post('/jazzcash/initiate', protect, initiateJazzCash);
 router.post('/jazzcash/confirm', protect, confirmJazzCash);
 router.post('/easypaisa/initiate', protect, initiateEasyPaisa);
 router.post('/easypaisa/confirm', protect, confirmEasyPaisa);
